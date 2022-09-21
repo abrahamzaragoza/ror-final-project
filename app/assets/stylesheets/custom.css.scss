@@ -1,1 +1,30 @@
 @import "bootstrap";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100hv;
+
+  #jumbotron {
+    background-color: #5e5fee !important;
+  }
+
+  #free-trial {
+    background: linear-gradient(
+        0deg,
+        rgba(211, 157, 255, 0.369),
+        rgba(179, 107, 255, 0.428)
+      ),
+      asset-url("managment.jpg");
+    background-size: cover;
+    .btn-purple {
+      background-color: #5e5fee !important;
+      color: white !important;
+    }
+  }
+
+  .text-purple {
+    color: #5e5fee !important;
+  }
+}
