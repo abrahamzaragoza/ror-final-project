@@ -1,0 +1,28 @@
+<div class="container-fuild mt-5 p-5 text-bg-dark rounded-3" id="jumbotron">
+  <h1 class="display-5 fw-bold">Task Managment for Every Team</h1>
+  <p class="col-md fs-4">
+    Team Task is designed for everyone and every type of team, it doesn't matter if your team is small,
+    medium or big, we offer plans that adapt to your needs.
+  </p>
+  <p class="col-md">
+    <strong>Start managin your projects with confidence.</strong>
+  </p>
+  <button class="btn btn-outline-light offset-md-10" type="button">Join Now</button>
+</div>
+
+<div class="h-100 p-5 text-bg-dark border rounded-3 mt-5" id="free-trial">
+  <h1 class="display-5 fw-bold text-purple">Try the Basic Plan Now!</h1>
+  <p class="col-md fs-4">
+    Start managing your projects with the best tools for free! Get unlimited access
+    for 15 days to the platform, cancel your trial at any time.
+  </p>
+  <button class="btn offset-md-10 btn-primary btn-purple" type="button">Start Trial</button>
+</div>
+
+<div class="row mt-5 my-2">
+  <% [1,2,3,4,5,6].each do |plan| %>
+  <div class="col my-3">
+    <%= render 'plan_card' %>
+  </div>
+  <% end %>
+</div>
