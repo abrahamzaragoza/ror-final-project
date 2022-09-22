@@ -1,0 +1,20 @@
+require: rubocop-rails
+
+Style/Documentation:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - config/initializers/devise.rb
+    - db/migrate/20220919175810_devise_create_users.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/development.rb
+
+Layout/LineLength:
+  Exclude:
+    - config/initializers/devise.rb
