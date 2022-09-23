@@ -6,3 +6,39 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+plans = [
+  {
+    plan_name: 'Basic Plan',
+    price_cents: 1000,
+    price_currency: 'usd',
+    plan_members: 5,
+    plan_duration: 1
+  },
+  {
+    plan_name: 'Intermediate Plan',
+    price_cents: 3500,
+    price_currency: 'usd',
+    plan_members: 10,
+    plan_duration: 3
+  },
+  {
+    plan_name: 'Premium Plan',
+    price_cents: 10000,
+    price_currency: 'usd',
+    plan_members: 25,
+    plan_duration: 6
+  }
+]
+
+plans.each do |plan_mock|
+  Plan.create!(
+    plan_name: plan_mock[:plan_name],
+    price_cents: plan_mock[:price_cents],
+    price_currency: plan_mock[:price_currency],
+    plan_members: plan_mock[:plan_members],
+    plan_duration: plan_mock[:plan_duration]
+  )
+end
+
+p 'Plans have been created'
