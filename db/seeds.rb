@@ -10,21 +10,21 @@
 plans = [
   {
     plan_name: 'Basic Plan',
-    price_cents: 1000,
+    price_cents: 10_00,
     price_currency: 'usd',
     plan_members: 5,
     plan_duration: 1
   },
   {
     plan_name: 'Intermediate Plan',
-    price_cents: 3500,
+    price_cents: 35_00,
     price_currency: 'usd',
     plan_members: 10,
     plan_duration: 3
   },
   {
     plan_name: 'Premium Plan',
-    price_cents: 10000,
+    price_cents: 100_00,
     price_currency: 'usd',
     plan_members: 25,
     plan_duration: 6
