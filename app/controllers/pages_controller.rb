@@ -7,6 +7,5 @@ class PagesController < ApplicationController
     @plans = Plan.all
   end
 
-  def about
-  end
+  def about; end
 end
