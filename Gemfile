@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'devise_invitable', '~> 2.0.0'
+gem 'money-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -49,6 +50,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'letter_opener'
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
   gem 'spring'
 end
 
@@ -57,6 +59,7 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver', '>= 4.0.0.rc1'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'rspec-rails'
   gem 'webdrivers'
 end
 

@@ -1,4 +1,16 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - node_modules/**/*
+    - vendor/**/*
+    - .git/**/*
+    - bin/**/*
+    - db/schema.rb
+    - db/migrate/20220919175810_devise_create_users.rb
+    - db/migrate/20220922194654_devise_invitable_add_to_users.rb
 
 Style/Documentation:
   Enabled: false
@@ -9,7 +21,6 @@ Rails/FilePath:
 Metrics/MethodLength:
   Exclude:
     - config/initializers/devise.rb
-    - db/migrate/20220919175810_devise_create_users.rb
 
 Metrics/BlockLength:
   Exclude:
