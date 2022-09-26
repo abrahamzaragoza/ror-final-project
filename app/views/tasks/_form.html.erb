@@ -1,0 +1,23 @@
+<section class='container-fuild'>
+  <%= form_with model: @task do |f|  %>
+    <div class="field">
+      <%= f.label :title, class: 'form-label' %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="field col-6">
+      <%= f.label :doing_time, class: 'form-label' %>
+      <%= f.number_field :doing_time, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :justification, class: 'form-label' %>
+      <%= f.text_field :justification, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :details, class: 'form-label' %>
+      <%= f.rich_text_area :details, class: 'form-control' %>
+    </div>
+    <div class='actions'>
+      <%= f.submit class: 'btn btn-purple offset-sm-10 mt-3'  %>
+    </div>
+  <% end %>
+</section>
