@@ -1,16 +1,28 @@
 <div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title"><%= task.title %></h5>
-    <span class="card-subtitle text-muted">
+    <div class="card-subtitle text-muted">
       Created by:
       <p class="badge text-bg-purple">Antonio H.</p>
-    </span>
+    </div>
+    <div class="cart-text text-muted">
+      assigned:
+    </div>
     <hr>
     <%= render 'dropdown_button', task: task %>
     <span class="card-text">
       <%= task.details %>
     </span>
     <hr>
+    <p class="badge bg-info">
+      Time assigned to task: <%= pluralize(task.doing_time, 'hour') %>
+    </p>
+    <p class="card-text text-muted">
+      time justification:
+    </p>
+    <p class="card-text">
+      <%= task.justification %>
+    </p>
     <p class="badge bg-success">Started at: <%= task.started_at %></p><br>
     <p class="badge bg-secondary">Finished at: <%= task.finished_at %></p>
     <hr>

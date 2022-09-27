@@ -1,13 +1,5 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 plans = [
   {
     plan_name: 'Basic Plan',
@@ -43,3 +35,53 @@ plans.each do |plan_mock|
 end
 
 Rails.logger.debug 'Plans have been created'
+
+tasks = [
+  {
+    title: 'Prepare feature A',
+    started_at: Time.now,
+    finished_at: Time.now,
+    doing_time: 3,
+    justification: 'Some justification for this task'
+  },
+  {
+    title: 'Fix feature B',
+    started_at: Time.now,
+    finished_at: Time.now,
+    doing_time: 4,
+    justification: 'Fixing this features requires a decent amount of time'
+  },
+  {
+    title: 'Create feature C',
+    started_at: Time.now,
+    finished_at: Time.now,
+    doing_time: 2,
+    justification: 'This feature is simple to implement'
+  },
+  {
+    title: 'Add new feature',
+    started_at: Time.now,
+    finished_at: Time.now,
+    doing_time: 5,
+    justification: 'Sample task justification'
+  },
+  {
+    title: 'Update feature A',
+    started_at: Time.now,
+    finished_at: Time.now,
+    doing_time: 4,
+    justification: 'Adding new complex options to feature A'
+  }
+]
+
+tasks.each do |task|
+  Task.create!(
+    title: task[:title],
+    started_at: task[:started_at],
+    finished_at: task[:finished_at],
+    doing_time: task[:doing_time],
+    justification: task[:justification]
+  )
+end
+
+Rails.logger.debug 'Tasks have been created'

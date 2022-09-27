@@ -16,7 +16,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      raise_flash_and_redirect_to(:notice, 'Task was created successfully.', @task)
+      flash_and_redirect_to(:notice, 'Task was created successfully.', @task)
     else
       render 'new'
     end
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   def update
     return unless @task.update(task_params)
 
-    raise_flash_and_redirect_to(:notice, 'Task was updated successfully.', @task)
+    flash_and_redirect_to(:notice, 'Task was updated successfully.', @task)
   end
 
   def destroy
