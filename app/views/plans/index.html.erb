@@ -1,0 +1,33 @@
+<h2 class="text-center mt-5">
+  Configure Plans
+</h2>
+<p class="badge bg-dark text-center">Admin Panel</p>
+
+<div class="mt-5">
+  <table class="table">
+    <thead>
+      <th class="col">Name</th>
+      <th class="col">Price</th>
+      <th class="col">Currency</th>
+      <th class="col">Members</th>
+      <th class="col">Duration</th>
+      <th class="col">Actions</th>
+    </thead>
+    <tbody>
+      <% @plans.each do |plan| %>
+      <tr>
+        <th><%= plan.plan_name %></th>
+        <td><%= plan.price %></td>
+        <td><%= plan.price_currency %></td>
+        <td><%= plan.plan_members %></td>
+        <td><%= plan.plan_duration %></td>
+        <td>
+          <%= link_to 'Edit', edit_plan_path(plan), class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'Delete', plan_path(plan), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'New Plan', new_plan_path, class: 'btn btn-success offset-md-10' %>
+</div>

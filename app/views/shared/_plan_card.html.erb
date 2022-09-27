@@ -1,0 +1,15 @@
+<div class="card" style="width: 16rem;">
+  <div class="card-body">
+    <h5 class="card-title text-center"><%= plan.plan_name.upcase %></h5>
+    <hr>
+    <% presenter = PlanCardPresenter.new(plan) %>
+    <h6 class="card-text px-2">
+      <%= "You can have up to #{plan.plan_members} members in your team. And
+      renew it every #{presenter.pluralize_plan_duration_in_months}" %>
+    </h6><br>
+    <h4 class="card-subtitle mb-2 text-center">Price: <%= "#{plan.price} #{plan.price_currency}" %></h4>
+    <div class="position-relative py-4">
+      <button class="btn btn-success position-absolute top-5 start-50 translate-middle" type="button">Join Plan</button>
+    </div>
+  </div>
+</div>
