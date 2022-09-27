@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
@@ -26,7 +28,10 @@ class TasksController < ApplicationController
     raise_flash_and_redirect_to(:notice, 'Task was updated successfully.', @task)
   end
 
-  def destroy; end
+  def destroy
+    @task.destroy
+    redirect_to tasks_path
+  end
 
   private
 
