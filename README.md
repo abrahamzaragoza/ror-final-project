@@ -1,24 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Authentication
 
-Things you may want to cover:
+For authentication Devise has been the choosen gem.
 
-* Ruby version
+```
+gem 'devise'
+```
 
-* System dependencies
+```
+# install devise
+rails g devise:install
+# generate devise views in order to customize them in the future
+rails g devise:views
+```
 
-* Configuration
+Devise requires a default mailer url (localhost @ dev) in the environment.
 
-* Database creation
+```
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+```
 
-* Database initialization
+## Mailer @ development
 
-* How to run the test suite
+For development Letter Opener has been choosen, this will allow us to preview the emails in the browser instead of sending them, which is a bad practice to send emails in development.
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+group :development do
+  gem 'letter_opener'
+end
+```
 
-* Deployment instructions
-
-* ...
+```
+  config.action_mailer.delivery_method = :letter_opener
+```
