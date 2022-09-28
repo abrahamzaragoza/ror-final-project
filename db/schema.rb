@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_26_214001) do
+ActiveRecord::Schema.define(version: 2022_09_28_165917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 2022_09_26_214001) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "boards", force: :cascade do |t|
+    t.string "title"
+    t.integer "visibility"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "plan_name"
     t.integer "price_cents", default: 0, null: false
@@ -64,6 +71,16 @@ ActiveRecord::Schema.define(version: 2022_09_26_214001) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "task_lists", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.integer "priority"
+    t.bigint "board_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_task_lists_on_board_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.datetime "started_at"
@@ -72,6 +89,8 @@ ActiveRecord::Schema.define(version: 2022_09_26_214001) do
     t.string "justification"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "task_list_id", null: false
+    t.index ["task_list_id"], name: "index_tasks_on_task_list_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -103,4 +122,6 @@ ActiveRecord::Schema.define(version: 2022_09_26_214001) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "task_lists", "boards"
+  add_foreign_key "tasks", "task_lists"
 end

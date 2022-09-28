@@ -39,40 +39,40 @@ Rails.logger.debug 'Plans have been created'
 tasks = [
   {
     title: 'Prepare feature A',
-    started_at: Time.now,
-    finished_at: Time.now,
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
     doing_time: 3,
     justification: 'Some justification for this task',
     details: '<p>Something nice</p>'
   },
   {
     title: 'Fix feature B',
-    started_at: Time.now,
-    finished_at: Time.now,
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
     doing_time: 4,
     justification: 'Fixing this features requires a decent amount of time',
     details: '<p>Something nice</p>'
   },
   {
     title: 'Create feature C',
-    started_at: Time.now,
-    finished_at: Time.now,
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
     doing_time: 2,
     justification: 'This feature is simple to implement',
     details: '<p>Something nice</p>'
   },
   {
     title: 'Add new feature',
-    started_at: Time.now,
-    finished_at: Time.now,
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
     doing_time: 5,
     justification: 'Sample task justification',
     details: '<p>Something nice</p>'
   },
   {
     title: 'Update feature A',
-    started_at: Time.now,
-    finished_at: Time.now,
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
     doing_time: 4,
     justification: 'Adding new complex options to feature A',
     details: '<p>Something nice</p>'
