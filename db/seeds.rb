@@ -36,6 +36,35 @@ end
 
 Rails.logger.debug 'Plans have been created'
 
+boards = [
+  {
+    title: 'Main Board',
+    visibility: 'private'
+  },
+  {
+    title: 'Secondary Board',
+    visibility: 'public'
+  }
+]
+
+task_lists = [
+  {
+    name: 'Dev',
+    color: '#3a3a3a',
+    priority: 'low',
+  },
+  {
+    name: 'Prod',
+    color: '#fff',
+    priority: 'critical',
+  },
+  {
+    name: 'Testing',
+    color: '#f0f0f0',
+    priority: 'important',
+  }
+]
+
 tasks = [
   {
     title: 'Prepare feature A',
@@ -79,15 +108,40 @@ tasks = [
   }
 ]
 
-tasks.each do |task|
-  Task.create!(
-    title: task[:title],
-    started_at: task[:started_at],
-    finished_at: task[:finished_at],
-    doing_time: task[:doing_time],
-    justification: task[:justification],
-    details: task[:details]
+boards.each do |b|
+  Board.create!(
+    title: b[:title],
+    visibility: b[:visibility]
   )
+end
+
+Rails.logger.debug 'Boards have been created'
+
+Board.all.each do |b|
+  task_lists.each do |tl|
+    TaskList.create!(
+      name: tl[:name],
+      color: tl[:color],
+      priority: tl[:priotity],
+      board_id: b.id
+    )
+  end
+end
+
+Rails.logger.debug 'Task Lists have been created'
+
+TaskList.all.each do |tl|
+  tasks.each do |task|
+    Task.create!(
+          title: task[:title],
+          started_at: task[:started_at],
+          finished_at: task[:finished_at],
+          doing_time: task[:doing_time],
+          justification: task[:justification],
+          details: task[:details],
+          task_list_id: tl.id
+        )
+  end
 end
 
 Rails.logger.debug 'Tasks have been created'
