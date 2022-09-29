@@ -1,8 +1,9 @@
 <% list_presenter = TaskListPresenter.new(list) %>
   <div class="col-md-3-custom h-100  bg-light rounded-3 mb-5 list-container">
     <div class="relative border task-list-title">
-      <div class="flex-fill p-2 text-15r">
+      <div class="d-fex p-2 text-15r justify-content-between">
         <%= link_to list.name, task_list_path(list), class: 'btn-text' %>
+        <%= render 'task_list_dropdown_button', list: list %>
       </div>
       <div class="task-list-color" style="background-color: <%= list.color %> !important">.</div>
       <div class="d-flex justify-content-between">

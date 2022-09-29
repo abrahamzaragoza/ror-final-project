@@ -1,14 +1,18 @@
 <div class="h-100 p-5 text-bg-purple border rounded-3 mb-5">
   <h2><%= @board.title %></h2>
-  <div class="row align-items-md-stretch">
-    <div class="col-md-8">Owner: Pedro A.</div>
-    <div class="col-md-4">Lists: <%= @board.task_lists.all.count %></div>
+  <% btn_presenter = ButtonPresenter.new %>
+  <div class="d-flex">
+    <div class="flex-grow-1">Owner: Pedro A.</div>
+    <div class="flex-grow-1">Lists: <%= @board.task_lists.all.count %></div>
+    <%= link_to '<i class="fa-regular fa-pen-to-square"></i>'.html_safe, edit_board_path(@board),
+      class: 'btn btn-sm btn-light mr-1' %>
+    <%= link_to '<i class="fa-solid fa-trash"></i>'.html_safe, board_path(@board), method: :delete,
+      class: 'btn btn-sm btn-danger', data: btn_presenter.confirmable_action %>
   </div>
-
 </div>
 
 <div class="row d-flex justify-content-between">
   <% @board.task_lists.each do |list| %>
-    <%= render 'shared/task_list', list: list%>
+    <%= render 'task_list', list: list%>
   <% end %>
 </div>

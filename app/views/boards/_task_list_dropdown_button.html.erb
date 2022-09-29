@@ -1,0 +1,16 @@
+<div class="btn-group offset-8">
+  <%= link_to '<i class="fa-solid fa-gear"></i>'.html_safe, '#', data: { bs_toggle: 'dropdown' } %>
+  <ul class="dropdown-menu">
+    <% btn_presenter = ButtonPresenter.new %>
+    <li>
+      <%= link_to 'Edit', edit_task_list_path(list), class: 'dropdown-item' %>
+    </li>
+    <li>
+      <%= link_to 'New Task', '#', class: 'dropdown-item' %>
+    </li>
+    <li>
+      <%= link_to 'Delete', task_list_path(list), method: :delete, class: 'dropdown-item text-danger',
+        data: btn_presenter.confirmable_action %>
+    </li>
+  </ul>
+</div>
