@@ -50,18 +50,18 @@ boards = [
 task_lists = [
   {
     name: 'Dev',
-    color: '#3a3a3a',
-    priority: 'low',
+    color: '#46dd4e',
+    priority: 'low'
   },
   {
     name: 'Prod',
-    color: '#fff',
-    priority: 'critical',
+    color: '#be7eff',
+    priority: 'critical'
   },
   {
     name: 'Testing',
-    color: '#f0f0f0',
-    priority: 'important',
+    color: '#ff6f59',
+    priority: 'important'
   }
 ]
 
@@ -122,7 +122,7 @@ Board.all.each do |b|
     TaskList.create!(
       name: tl[:name],
       color: tl[:color],
-      priority: tl[:priotity],
+      priority: tl[:priority],
       board_id: b.id
     )
   end

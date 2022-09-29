@@ -1,0 +1,14 @@
+<div class="h-100 p-5 text-bg-purple border rounded-3 mb-5">
+  <h2><%= @board.title %></h2>
+  <div class="row align-items-md-stretch">
+    <div class="col-md-8">Owner: Pedro A.</div>
+    <div class="col-md-4">Lists: <%= @board.task_lists.all.count %></div>
+  </div>
+
+</div>
+
+<div class="row d-flex justify-content-between">
+  <% @board.task_lists.each do |list| %>
+    <%= render 'shared/task_list', list: list%>
+  <% end %>
+</div>

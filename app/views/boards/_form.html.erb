@@ -1,0 +1,16 @@
+<section class='container-fuild col-8 text-bg-purple p-4 rounded-3'>
+  <h3>Create new Board</h3>
+  <%= form_with model: @board do |f| %>
+    <div class="field mb-3">
+      <%= f.label :title, class: 'form-label' %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :visibility, class: 'form-label mr-1' %>
+      <%= f.select :visibility, Board.visibilities.keys, class: 'form-select' %>
+    </div>
+    <div class="actions">
+      <%= f.submit class: 'btn btn-light offset-sm-10 mt-3' %>
+    </div>
+  <% end %>
+</section>

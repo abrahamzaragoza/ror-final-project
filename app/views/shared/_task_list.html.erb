@@ -1,0 +1,29 @@
+<% list_presenter = TaskListPresenter.new(list) %>
+  <div class="col-md-3-custom h-100  bg-light rounded-3 mb-5 list-container">
+    <div class="relative border task-list-title">
+      <div class="flex-fill p-2 text-15r">
+        <%= link_to list.name, task_list_path(list), class: 'btn-text' %>
+      </div>
+      <div class="task-list-color" style="background-color: <%= list.color %> !important">.</div>
+      <div class="d-flex justify-content-between">
+        <p class="badge <%= list_presenter.priotity_badge_color %>"><%= list.priority %></p>
+        <p class="text-9r">Tasks: <%= list.tasks.all.count %></p>
+      </div>
+    </div>
+    <div>
+      <% list.tasks.each do |task| %>
+      <div class="p-2 text-bg-light-blue bottom-border">
+        <p class="m-0">
+          <%= link_to task.title, task_path(task), class: 'text-light' %>
+        </p>
+        <div class="time-and-justification-container">
+          <p class="text-7r m-0">Doing time: <%= task.doing_time %></p>
+          <p class="text-7r m-0"><%= task.justification %></p>
+        </div>
+        <div id="assigned-members">
+          <p class="text-9r m-0">Assigned: []</p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
