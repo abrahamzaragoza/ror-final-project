@@ -2,13 +2,13 @@
   <div class="col-md-3-custom h-100  bg-light rounded-3 mb-5 list-container">
     <div class="relative border task-list-title">
       <div class="d-fex p-2 text-15r justify-content-between">
-        <%= link_to list.name, task_list_path(list), class: 'btn-text' %>
-        <%= render 'task_list_dropdown_button', list: list %>
+        <p class="col-md fs-4"><%= list.name %></p>
       </div>
       <div class="task-list-color" style="background-color: <%= list.color %> !important">.</div>
       <div class="d-flex justify-content-between">
         <p class="badge <%= list_presenter.priotity_badge_color %>"><%= list.priority %></p>
         <p class="text-9r">Tasks: <%= list.tasks.all.count %></p>
+        <%= render 'task_list_dropdown_button', list: list %>
       </div>
     </div>
     <div>

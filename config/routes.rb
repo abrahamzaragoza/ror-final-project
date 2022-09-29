@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'about', to: 'pages#about'
   resources :plans
-  resources :boards
-  resources :task_lists
-  resources :tasks
+  resources :boards do
+    resources :task_lists, shallow: true do
+      resources :tasks, shallow: true
+    end
+  end
 end

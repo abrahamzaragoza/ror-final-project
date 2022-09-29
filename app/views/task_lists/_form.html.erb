@@ -1,0 +1,21 @@
+<section class='container-fuild col-8 text-bg-purple p-4 rounded-3'>
+  <h3>Create new List</h3>
+  <%= form_with model: [@board, @task_list] do |f| %>
+    <div class="field mb-3">
+      <%= f.label :name, class: 'form-label' %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="field mb-3 col-4">
+      <%= f.label :color, class: 'form-label' %>
+      <%= f.color_field :color, class: 'form-control form-control-color' %>
+    </div>
+    <div class="field mb-3 col-4">
+      <%= f.label :priority, class: 'form-label mr-1' %>
+      <%= f.select :priority, TaskList.priorities.keys, class: 'form-select' %>
+    </div>
+    <div class="actions d-flex offset-sm-9 ">
+      <%= link_to 'Back', boards_path, class: 'btn btn-light mx-2' %>
+      <%= f.submit class: 'btn btn-light' %>
+    </div>
+  <% end %>
+</section>
