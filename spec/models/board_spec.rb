@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'shared/shared_board_context.rb'
+require 'shared/shared_board_context'
 
 RSpec.describe Board, type: :model do
   let(:valid_board) do
@@ -73,15 +73,15 @@ RSpec.describe Board, type: :model do
     end
 
     it 'destroys board with all associated objects - board count to be 0' do
-      expect{ valid_board.destroy }.to change { described_class.all.count }.by(-1)
+      expect { valid_board.destroy }.to change { described_class.all.count }.by(-1)
     end
 
     it 'destroys board with all associated objects - task lists count to be 0' do
-      expect{ valid_board.destroy }.to change { TaskList.all.count }.by(-1)
+      expect { valid_board.destroy }.to change { TaskList.all.count }.by(-1)
     end
 
     it 'destroys board with all associated objects - tasks count to be 0' do
-      expect{ valid_board.destroy }.to change { Task.all.count }.by(-1)
+      expect { valid_board.destroy }.to change { Task.all.count }.by(-1)
     end
   end
 end

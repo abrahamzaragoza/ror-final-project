@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'shared/shared_board_context.rb'
+require 'shared/shared_board_context'
 
 RSpec.describe TaskList, type: :model do
   include_context "Board's context"
@@ -26,7 +26,7 @@ RSpec.describe TaskList, type: :model do
   it 'destroys task lists linked to a board, after removing the board' do
     valid_task_list.save
     current_board.destroy
-    expect(TaskList.count).to eq(0)
+    expect(described_class.count).to eq(0)
   end
 
   it "doesn't save a task list with an invalid name" do
@@ -86,6 +86,6 @@ RSpec.describe TaskList, type: :model do
 
   it 'destroys task list & decreseas count' do
     valid_task_list.save
-    expect{ described_class.delete(valid_task_list) }.to change { described_class.all.count }.by(-1)
+    expect { described_class.delete(valid_task_list) }.to change { described_class.all.count }.by(-1)
   end
 end

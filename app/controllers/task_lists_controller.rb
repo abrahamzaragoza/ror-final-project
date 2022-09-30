@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 class TaskListsController < ApplicationController
   before_action :set_task_list, only: %i[show edit update destroy]
   before_action :set_board, only: [:new]
 
-  def show
-  end
+  def show; end
 
   def new
     @task_list = TaskList.new

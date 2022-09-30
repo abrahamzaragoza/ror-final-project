@@ -133,14 +133,14 @@ Rails.logger.debug 'Task Lists have been created'
 TaskList.all.each do |tl|
   tasks.each do |task|
     Task.create!(
-          title: task[:title],
-          started_at: task[:started_at],
-          finished_at: task[:finished_at],
-          doing_time: task[:doing_time],
-          justification: task[:justification],
-          details: task[:details],
-          task_list_id: tl.id
-        )
+      title: task[:title],
+      started_at: task[:started_at],
+      finished_at: task[:finished_at],
+      doing_time: task[:doing_time],
+      justification: task[:justification],
+      details: task[:details],
+      task_list_id: tl.id
+    )
   end
 end
 

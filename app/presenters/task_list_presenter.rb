@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class TaskListPresenter
-
   def initialize(list)
     @list = list
   end

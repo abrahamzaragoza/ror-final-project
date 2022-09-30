@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'shared/shared_board_context.rb'
+require 'shared/shared_board_context'
 
 RSpec.describe Task, type: :model do
   include_context "Board's context"
@@ -13,9 +13,8 @@ RSpec.describe Task, type: :model do
 
   let(:time) { Time.zone.now }
 
-
   it 'saves a valid task, linked to a task list & incresase task_list count' do
-    expect{ valid_task.save }.to change { current_task_list.tasks.count }.by(1)
+    expect { valid_task.save }.to change { current_task_list.tasks.count }.by(1)
   end
 
   it "doesn't save a task with an invalid title" do
@@ -33,7 +32,7 @@ RSpec.describe Task, type: :model do
     expect(valid_task.save).to be_falsy
   end
 
-  it "does saves a task with blank started_at & finished_at params" do
+  it 'does saves a task with blank started_at & finished_at params' do
     valid_task.started_at = nil
     valid_task.finished_at = nil
     expect(valid_task.save).to be_truthy
@@ -70,6 +69,6 @@ RSpec.describe Task, type: :model do
 
   it 'destroys task & decreases count' do
     valid_task.save
-    expect{ described_class.delete(valid_task) }.to change { described_class.all.count }.by(-1)
+    expect { described_class.delete(valid_task) }.to change { described_class.all.count }.by(-1)
   end
 end

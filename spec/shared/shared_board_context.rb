@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.shared_context "Board's context" do
   let(:valid_board) do
     Board.new(
