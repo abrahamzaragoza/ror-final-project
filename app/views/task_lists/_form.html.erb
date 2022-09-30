@@ -14,7 +14,7 @@
       <%= f.select :priority, TaskList.priorities.keys, class: 'form-select' %>
     </div>
     <div class="actions d-flex offset-sm-9 ">
-      <%= link_to 'Back', boards_path, class: 'btn btn-light mx-2' %>
+      <%= link_to 'Back', :back, class: 'btn btn-light mx-2' %>
       <%= f.submit class: 'btn btn-light' %>
     </div>
   <% end %>

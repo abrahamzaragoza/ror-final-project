@@ -22,7 +22,10 @@ class BoardsController < ApplicationController
     end
   end
 
-  def update;
+  def update
+    return unless @board.update(board_params)
+
+    flash_and_redirect_to(:notice, 'Board was updated successfully.', @board)
   end
 
   def destroy
