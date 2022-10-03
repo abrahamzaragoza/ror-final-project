@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'shared/shared_board_context'
 
 RSpec.describe Task, type: :model do
-  include_context "Board's context"
+  include_context "with Board's context"
 
   before do
     valid_board.save
@@ -69,6 +69,6 @@ RSpec.describe Task, type: :model do
 
   it 'destroys task & decreases count' do
     valid_task.save
-    expect { described_class.delete(valid_task) }.to change { described_class.all.count }.by(-1)
+    expect { valid_task.destroy }.to change { described_class.all.count }.by(-1)
   end
 end

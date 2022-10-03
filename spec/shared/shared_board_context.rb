@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_context "Board's context" do
+RSpec.shared_context "with Board's context" do
   let(:valid_board) do
     Board.new(
       title: 'Board title',

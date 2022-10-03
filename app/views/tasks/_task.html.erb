@@ -9,7 +9,7 @@
       assigned:
     </div>
     <hr>
-    <%= render 'dropdown_button', task: task %>
+    <%= render 'tasks/dropdown_button', task: task %>
     <span class="card-text">
       <%= task.details %>
     </span>
@@ -26,6 +26,8 @@
     <p class="badge bg-success">Started at: <%= task.started_at %></p><br>
     <p class="badge bg-secondary">Finished at: <%= task.finished_at %></p>
     <hr>
-    <small class="card-text">Created <%= format_time_in_words(task.created_at) %> ago</small>
+    <small class="card-text">Created <%=  time_ago_in_words(task.created_at) %> ago</small>
+    <%= render 'tasks/task_history', task: task %>
   </div>
 </div>
+

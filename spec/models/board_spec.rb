@@ -60,7 +60,7 @@ RSpec.describe Board, type: :model do
   end
 
   context 'with baoard associated with task list & tasks' do
-    include_context "Board's context"
+    include_context "with Board's context"
 
     before do
       valid_board.save

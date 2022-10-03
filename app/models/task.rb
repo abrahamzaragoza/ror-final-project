@@ -6,4 +6,16 @@ class Task < ApplicationRecord
 
   has_rich_text :details
   belongs_to :task_list
+  has_many :task_histories, dependent: :destroy
+
+  after_create :add_task_history_record_on_create
+  before_update :add_task_history_record_on_update
+
+  def add_task_history_record_on_create
+    TaskHistory.create(task: self, list: task_list.name)
+  end
+
+  def add_task_history_record_on_update
+    TaskHistory.create(task: self, list: task_list.name) unless task_list_id == task_list_id_was
+  end
 end

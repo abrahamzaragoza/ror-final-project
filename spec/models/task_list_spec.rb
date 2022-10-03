@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'shared/shared_board_context'
 
 RSpec.describe TaskList, type: :model do
-  include_context "Board's context"
+  include_context "with Board's context"
 
   before do
     valid_board.save
@@ -40,7 +40,7 @@ RSpec.describe TaskList, type: :model do
   end
 
   it 'color param has to begin with #' do
-    expect(/^#[a-zA-Z0-9]*/).to match(valid_task_list.color)
+    expect(valid_task_list.color).to match(/^#[a-zA-Z0-9]*/)
   end
 
   it 'color param must be a minimum 4 characters' do
@@ -61,11 +61,6 @@ RSpec.describe TaskList, type: :model do
     expect(valid_task_list.errors.first.message).to match('Only hexadecimal values allowed')
   end
 
-  it 'decreases the Task List count' do
-    valid_task_list.save
-    expect { described_class.delete(valid_task_list) }.to change { described_class.all.count }.by(-1)
-  end
-
   it 'updates task list name' do
     valid_task_list.save
     valid_task_list.name = 'New list name'
@@ -78,7 +73,7 @@ RSpec.describe TaskList, type: :model do
     expect(valid_task_list.priority).to match('low')
   end
 
-  it 'updates task list priority' do
+  it 'updates task list color' do
     valid_task_list.save
     valid_task_list.color = '#333'
     expect(valid_task_list.color).to match('#333')

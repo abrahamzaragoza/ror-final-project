@@ -14,7 +14,7 @@
     </div>
     <div class="field m-1">
       <%= f.label :task_list_id, class: 'form-label' %>
-      <%= f.collection_select :task_list_id, @task.id.nil? ? @list.board.task_lists : @task.task_list.board.task_lists,
+      <%= f.collection_select :task_list_id, @task.id.nil? ? @task_list.board.task_lists : @task.task_list.board.task_lists,
           :id, :name, class: 'form-select' %>
     </div>
     <div class="field mx-1">

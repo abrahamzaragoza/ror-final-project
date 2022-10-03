@@ -18,7 +18,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.task_list_id = params[:task_list_id]
+    # @task.task_list_id = params[:task_list_id]
     if @task.save
       flash_and_redirect_to(:notice, 'Task was created successfully.', board_path(boards_path))
     else

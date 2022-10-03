@@ -1,0 +1,22 @@
+<div class="container">
+  <a class="text-muted" data-bs-toggle="collapse"
+                        href="#collapseExample"
+                        role="button"
+                        aria-expanded="false"
+                        aria-controls="collapseExample">
+    Task history
+  </a>
+</div>
+<p>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body px-1">
+    <ul>
+      <% task.task_histories.all.each do |record| %>
+        <li style="font-size: 0.75rem;">
+          <%= "#{record.list} @ #{created_at_format(record.created_at)}" %>
+        </li>
+        <% end %>
+    </ul>
+  </div>
+</div>
