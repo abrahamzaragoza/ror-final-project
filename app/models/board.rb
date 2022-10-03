@@ -5,4 +5,5 @@ class Board < ApplicationRecord
   enum visibility: { public: 0, private: 1 }, _prefix: :visibility
 
   has_many :task_lists, dependent: :destroy
+  belongs_to :owner, class_name: 'User'
 end
