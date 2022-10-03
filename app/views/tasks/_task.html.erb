@@ -3,10 +3,10 @@
     <h5 class="card-title"><%= task.title %></h5>
     <div class="card-subtitle text-muted">
       Created by:
-      <p class="badge text-bg-purple">Antonio H.</p>
+      <p class="badge text-bg-purple"><%= task.author.email %></p>
     </div>
     <div class="cart-text text-muted">
-      assigned:
+      assigned: <%= render 'tasks/task_assigned_users', task: task %>
     </div>
     <hr>
     <%= render 'tasks/dropdown_button', task: task %>

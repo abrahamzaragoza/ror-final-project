@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_03_213847) do
+ActiveRecord::Schema.define(version: 2022_10_03_215405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -91,6 +91,15 @@ ActiveRecord::Schema.define(version: 2022_10_03_213847) do
     t.index ["board_id"], name: "index_task_lists_on_board_id"
   end
 
+  create_table "task_users", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_task_users_on_task_id"
+    t.index ["user_id"], name: "index_task_users_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.datetime "started_at"
@@ -137,6 +146,8 @@ ActiveRecord::Schema.define(version: 2022_10_03_213847) do
   add_foreign_key "boards", "users", column: "owner_id"
   add_foreign_key "task_histories", "tasks"
   add_foreign_key "task_lists", "boards"
+  add_foreign_key "task_users", "tasks"
+  add_foreign_key "task_users", "users"
   add_foreign_key "tasks", "task_lists"
   add_foreign_key "tasks", "users", column: "author_id"
 end

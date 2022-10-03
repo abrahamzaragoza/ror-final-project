@@ -8,6 +8,10 @@ class Task < ApplicationRecord
   belongs_to :task_list
   belongs_to :author, class_name: 'User'
   has_many :task_histories, dependent: :destroy
+  has_many :task_users
+  has_many :users, through: :task_users
+
+  alias_attribute :assigned_users, :users
 
   after_create :add_task_history_record_on_create
   before_update :add_task_history_record_on_update

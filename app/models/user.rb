@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :boards, foreign_key: :owner
   has_many :tasks, foreign_key: :author
+  has_many :tasks, through: :task_users
 end
