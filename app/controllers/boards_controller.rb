@@ -17,6 +17,7 @@ class BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
+    @board.owner = current_user
     if @board.save
       flash_and_redirect_to(:notice, 'Board has been created successfully', @board)
     else
@@ -42,6 +43,6 @@ class BoardsController < ApplicationController
   end
 
   def board_params
-    params.require(:board).permit(%i[title visibility])
+    params.require(:board).permit(%i[title visibility owner_id])
   end
 end

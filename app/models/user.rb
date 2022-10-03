@@ -6,4 +6,5 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
   has_many :boards, foreign_key: :owner
+  has_many :tasks, foreign_key: :author
 end

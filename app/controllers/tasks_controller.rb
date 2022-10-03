@@ -18,7 +18,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    # @task.task_list_id = params[:task_list_id]
+    @task.author = current_user
     if @task.save
       flash_and_redirect_to(:notice, 'Task was created successfully.', board_path(boards_path))
     else
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(%i[title started_at finished_at doing_time justification details task_list_id])
+    params.require(:task).permit(%i[title started_at finished_at doing_time justification details task_list_id author_id])
   end
 
   def boards_path

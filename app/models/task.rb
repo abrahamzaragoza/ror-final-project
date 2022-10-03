@@ -6,6 +6,7 @@ class Task < ApplicationRecord
 
   has_rich_text :details
   belongs_to :task_list
+  belongs_to :author, class_name: 'User'
   has_many :task_histories, dependent: :destroy
 
   after_create :add_task_history_record_on_create
