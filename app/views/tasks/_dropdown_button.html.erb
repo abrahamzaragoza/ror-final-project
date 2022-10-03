@@ -1,0 +1,23 @@
+<div class="btn-group offset-8">
+  <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+    options
+  </button>
+  <ul class="dropdown-menu">
+    <% presenter = ButtonPresenter.new %>
+    <li>
+      <%= link_to 'Edit', edit_task_path(task), class: 'dropdown-item' %>
+    </li>
+    <li>
+      <%= link_to 'Delete', task_path(task), method: :delete, class: 'dropdown-item text-danger',
+          data: presenter.confirmable_action %>
+    </li>
+    <li>
+      <%= link_to 'Mark start time', task_path(task, task: { started_at: Time.now }), method: :put,
+          class: 'dropdown-item', data: presenter.confirmable_action %>
+    </li>
+    <li>
+      <%= link_to 'Mark task as finished', task_path(task, task: { finished_at: Time.now }), method: :put,
+          class: 'dropdown-item', data: presenter.confirmable_action %>
+    </li>
+  </ul>
+</div>

@@ -11,6 +11,8 @@ AllCops:
     - db/schema.rb
     - db/migrate/20220919175810_devise_create_users.rb
     - db/migrate/20220922194654_devise_invitable_add_to_users.rb
+    - db/migrate/20220926213444_create_active_storage_tables.active_storage.rb
+    - db/migrate/20220928165917_add_task_list_reference_to_task.rb
 
 Style/Documentation:
   Enabled: false

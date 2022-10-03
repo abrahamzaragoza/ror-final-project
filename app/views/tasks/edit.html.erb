@@ -1,0 +1,3 @@
+<h2 class="text-center my-5">Edit <%= @task.title %></h2>
+<%= render 'form' %>
+<%= link_to 'Back to Board', board_path(@list.board_id), class: 'btn btn-purple offset-sm-10 mt-3' %>
