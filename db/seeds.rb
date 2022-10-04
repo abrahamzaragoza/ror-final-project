@@ -2,11 +2,11 @@
 
 admin = User.new(
   {
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  authorization_tier: 'admin',
-  email: Faker::Internet.email,
-  password: 'password'
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    authorization_tier: 'admin',
+    email: Faker::Internet.email,
+    password: 'password'
   }
 )
 admin.skip_confirmation!
@@ -14,11 +14,11 @@ admin.save!
 
 manager = User.new(
   {
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  authorization_tier: 'manager',
-  email: Faker::Internet.email,
-  password: 'password'
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    authorization_tier: 'manager',
+    email: Faker::Internet.email,
+    password: 'password'
   }
 )
 manager.skip_confirmation!
@@ -27,12 +27,12 @@ manager.save!
 4.times do
   user = User.new(
     {
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    authorization_tier: 'user',
-    email: Faker::Internet.email,
-    password: 'password',
-    invited_by_id: manager.id
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      authorization_tier: 'user',
+      email: Faker::Internet.email,
+      password: 'password',
+      invited_by_id: manager.id
     }
   )
   user.skip_confirmation!

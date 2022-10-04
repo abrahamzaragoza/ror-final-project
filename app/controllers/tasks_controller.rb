@@ -49,7 +49,8 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(%i[title started_at finished_at doing_time justification details task_list_id author_id])
+    params.require(:task).permit(%i[title started_at finished_at doing_time justification details task_list_id
+                                    author_id])
   end
 
   def boards_path
