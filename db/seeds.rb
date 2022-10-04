@@ -29,7 +29,7 @@ manager.save!
     {
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    authorization_tier: 'manager',
+    authorization_tier: 'user',
     email: Faker::Internet.email,
     password: 'password',
     invited_by_id: manager.id
