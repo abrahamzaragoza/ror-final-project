@@ -21,6 +21,7 @@ class BoardsController < ApplicationController
     if @board.save
       flash_and_redirect_to(:notice, 'Board has been created successfully', @board)
     else
+      flash[:alert] = "There was an error creating your board."
       render 'new'
     end
   end
