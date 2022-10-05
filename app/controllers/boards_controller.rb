@@ -23,15 +23,10 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
     @board.owner = current_user
-    if current_user.can_create_board?
-      if @board.save
-        flash_and_redirect_to(:notice, 'Board has been created successfully', @board)
-      else
-        flash[:alert] = "There was an error creating your board."
-        render 'new'
-      end
+    if current_user.can_create_board? && @board.save
+      flash_and_redirect_to(:notice, 'Board has been created successfully', @board)
     else
-      flash_and_redirect_to(:alert, 'You have reached the maximum amount of boards', boards_path)
+      flash_and_redirect_to(:alert, 'There was an error creating your board.', new_board_path)
     end
   end
 
