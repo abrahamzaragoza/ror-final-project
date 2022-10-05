@@ -2,6 +2,12 @@
 
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[show edit update destroy]
+  # authorize_persona class_name: 'User'
+  grant(
+    user: [:show, :index],
+    manager: :all,
+    admin: :all
+  )
 
   def show; end
 

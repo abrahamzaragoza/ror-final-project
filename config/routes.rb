@@ -3,7 +3,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     invitations: 'invitations',
-    registrations: 'users/registrations'
+    confirmations: 'users/confirmations',
+    passwords: 'users/registrations',
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    unlocks: 'users/unlocks'
   }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

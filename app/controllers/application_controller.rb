@@ -3,10 +3,12 @@
 require_relative 'concerns/flash_messages_concern'
 
 class ApplicationController < ActionController::Base
+  include AuthorizedPersona::Authorization
   include FlashMessage
 
+  authorize_persona class_name: 'User'
+
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!
 
   protected
 

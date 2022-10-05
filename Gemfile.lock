@@ -63,6 +63,8 @@ GEM
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
+    authorized_persona (0.9.0)
+      railties (>= 5.1.6.2, < 7)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     bcrypt (3.1.18)
@@ -298,6 +300,7 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
+  authorized_persona
   bootsnap (>= 1.4.4)
   bootstrap
   byebug
