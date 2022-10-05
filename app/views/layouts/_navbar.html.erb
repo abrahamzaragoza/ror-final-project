@@ -33,8 +33,9 @@
               <%= current_user.email %>
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Profile</a></li>
-              <li><a class="dropdown-item" href="#">Managment</a></li>
+              <li><%= link_to "Profile", user_path(current_user), class: 'dropdown-item' %> </li>
+              <li><%= link_to "Boards", boards_path, class: 'dropdown-item' %></li>
+              <li><%= link_to "Team", boards_path, class: 'dropdown-item' %></li>
               <li>
                 <%= link_to "Logout", destroy_user_session_path, method: :delete,
                   class: "dropdown-item" %>

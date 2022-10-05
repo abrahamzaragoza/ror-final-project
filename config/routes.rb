@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   root 'pages#index'
   get 'about', to: 'pages#about'
+  resources :users, only: [:show]
   resources :plans
   resources :boards do
     resources :task_lists, shallow: true do
