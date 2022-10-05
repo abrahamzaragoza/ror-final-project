@@ -27,6 +27,7 @@ class TasksController < ApplicationController
     if @task.save
       flash_and_redirect_to(:notice, 'Task was created successfully.', board_path(boards_path))
     else
+      flash[:alert] = "There was an error creating your task."
       render 'new'
     end
   end

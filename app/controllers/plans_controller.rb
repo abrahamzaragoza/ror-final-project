@@ -25,6 +25,7 @@ class PlansController < ApplicationController
       if @plan.save
         flash_and_redirect_to(:notice, 'Plan was created successfully.', plans_path)
       else
+        flash[:alert] = "There was an error creating your plan."
         render 'new'
       end
     else

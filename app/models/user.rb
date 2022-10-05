@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   include AuthorizedPersona::Persona
+  MAX_BOARDS = 10
 
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
@@ -16,4 +17,8 @@ class User < ApplicationRecord
   )
 
   validates :authorization_tier, inclusion: { in: authorization_tier_names }
+
+  def can_create_board?
+    boards.count < MAX_BOARDS
+  end
 end
