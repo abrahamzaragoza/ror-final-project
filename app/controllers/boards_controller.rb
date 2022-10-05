@@ -26,7 +26,7 @@ class BoardsController < ApplicationController
     if current_user.can_create_board? && @board.save
       flash_and_redirect_to(:notice, 'Board has been created successfully', @board)
     else
-      flash_and_redirect_to(:alert, 'There was an error creating your board.', new_board_path)
+      flash_and_render(:alert, 'There was an error creating your board.', :new)
     end
   end
 

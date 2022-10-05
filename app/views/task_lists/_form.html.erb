@@ -1,5 +1,6 @@
 <section class='container-fuild col-8 text-bg-purple p-4 rounded-3'>
   <h3>Create new List</h3>
+  <%= render 'shared/errors', obj: @task_list %>
   <%= form_with model: [@board, @task_list] do |f| %>
     <div class="field mb-3">
       <%= f.label :name, class: 'form-label' %>

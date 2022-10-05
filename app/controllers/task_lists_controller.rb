@@ -23,7 +23,7 @@ class TaskListsController < ApplicationController
     if @board.able_to_create_list? && @task_list.save
       flash_and_redirect_to(:notice, 'List has been created successfully', boards_path)
     else
-      flash_and_redirect_to(:alert, 'There was an error creating your list.', new_board_task_list_path)
+      flash_and_render(:alert, 'There was an error creating your list.', :new)
     end
   end
 

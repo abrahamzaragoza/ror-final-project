@@ -20,15 +20,11 @@ class PlansController < ApplicationController
   def edit; end
 
   def create
-    if can_create_plan?
-      @plan = Plan.new(plan_params)
-      if @plan.save
-        flash_and_redirect_to(:notice, 'Plan was created successfully.', plans_path)
-      else
-        flash_and_redirect_to(:alert, 'There was an error creating your plan.', new_plan_path)
-      end
+    @plan = Plan.new(plan_params)
+    if can_create_plan? && @plan.save
+      flash_and_redirect_to(:notice, 'Plan was created successfully.', plans_path)
     else
-      flash_and_redirect_to(:alert, 'The maximum amount of plans have been reached.', plans_path)
+      flash_and_render(:alert, 'There was an error creating your plan.', :new)
     end
   end
 

@@ -1,5 +1,6 @@
 <section class='container-fuild col-8 text-bg-purple p-4 rounded-3'>
   <h3>Create new Board</h3>
+  <%= render 'shared/errors', obj: @board %>
   <%= form_with model: @board do |f| %>
     <div class="field mb-3">
       <%= f.label :title, class: 'form-label' %>
