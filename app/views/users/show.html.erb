@@ -1,3 +1,4 @@
+<% user_presenter = UserPresenter.new(@user) %>
 <div class="p-5 text-bg-purple border rounded-3 mt-5">
   <h3 class="text-center">
     <%= "#{@user.first_name}'s Profile" %>
@@ -19,6 +20,9 @@
   </div>
     <hr>
   <div class="row text-15r">
-    <p class="col-md-4"><strong class="text-muted">Security Updates:</strong></p><p class="col-md-4">suscribed</p>
+    <p class="col-md-4"><strong class="text-muted">Security Updates:</strong></p>
+    <p class="col-md-4" style="color: <%= user_presenter.security_update_color %>">
+      <%= user_presenter.security_update_status %>
+    </p>
   </div>
 </div>

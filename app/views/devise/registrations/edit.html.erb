@@ -12,6 +12,11 @@
       <%= f.label :last_name, class: 'm-2' %><br />
       <%= f.text_field :last_name, autofocus: true, autocomplete: 'last_name', class: 'form-control m-2' %>
     </div>
+    <em class="m-2"> Suscribe to receive security emails</em>
+    <div class='form-check'>
+      <%= f.check_box :security_updates, class: 'form-check-input m-2' %>
+      <%= f.label :security_updates, class: 'form-check-label m-2' %><br />
+    </div>
 
     <div class='field'>
       <%= f.label :email, class: 'm-2' %><br />
