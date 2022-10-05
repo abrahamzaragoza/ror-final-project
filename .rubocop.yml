@@ -15,7 +15,7 @@ AllCops:
     - db/migrate/20220928165917_add_task_list_reference_to_task.rb
     - db/migrate/20221003232158_add_authorization_tier_and_name_to_user.rb
     - app/controllers/invitations_controller.rb
-    - app/controllers/registrations_controller.rb
+    - app/controllers/users/*
 
 Style/Documentation:
   Enabled: false

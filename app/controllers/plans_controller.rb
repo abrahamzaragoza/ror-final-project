@@ -2,6 +2,10 @@
 
 class PlansController < ApplicationController
   before_action :set_plan, only: %i[edit update destroy]
+  grant(
+    manager: :index,
+    admin: :all
+  )
 
   def show; end
 

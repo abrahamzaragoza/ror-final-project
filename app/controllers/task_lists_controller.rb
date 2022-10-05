@@ -3,6 +3,11 @@
 class TaskListsController < ApplicationController
   before_action :set_task_list, only: %i[show edit update destroy]
   before_action :set_board, only: [:new]
+  grant(
+    user: :all,
+    manager: :all,
+    admin: :all
+  )
 
   def show; end
 
