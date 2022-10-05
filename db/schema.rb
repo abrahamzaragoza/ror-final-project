@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_05_215439) do
+ActiveRecord::Schema.define(version: 2022_10_05_233157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -138,10 +138,12 @@ ActiveRecord::Schema.define(version: 2022_10_05_215439) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "security_updates", default: true
+    t.bigint "manager_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
+    t.index ["manager_id"], name: "index_users_on_manager_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -154,4 +156,5 @@ ActiveRecord::Schema.define(version: 2022_10_05_215439) do
   add_foreign_key "task_users", "users"
   add_foreign_key "tasks", "task_lists"
   add_foreign_key "tasks", "users", column: "author_id"
+  add_foreign_key "users", "users", column: "manager_id"
 end
