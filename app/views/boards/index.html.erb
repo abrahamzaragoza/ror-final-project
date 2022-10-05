@@ -1,0 +1,6 @@
+<% @boards.each do |board| %>
+  <%= board.id %>
+  <%= board.title %>
+<% end %>
+
+<%= link_to 'new', new_board_path %>

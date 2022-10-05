@@ -1,12 +1,45 @@
 # frozen_string_literal: true
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+admin = User.new(
+  {
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    authorization_tier: 'admin',
+    email: Faker::Internet.email,
+    password: 'password'
+  }
+)
+admin.skip_confirmation!
+admin.save!
+
+manager = User.new(
+  {
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    authorization_tier: 'manager',
+    email: Faker::Internet.email,
+    password: 'password'
+  }
+)
+manager.skip_confirmation!
+manager.save!
+
+4.times do
+  user = User.new(
+    {
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      authorization_tier: 'user',
+      email: Faker::Internet.email,
+      password: 'password',
+      invited_by_id: manager.id
+    }
+  )
+  user.skip_confirmation!
+  user.save!
+end
+
+Rails.logger.debug 'Users have been created'
 
 plans = [
   {
@@ -43,3 +76,113 @@ plans.each do |plan_mock|
 end
 
 Rails.logger.debug 'Plans have been created'
+
+boards = [
+  {
+    title: 'Main Board',
+    visibility: 'private'
+  },
+  {
+    title: 'Secondary Board',
+    visibility: 'public'
+  }
+]
+
+task_lists = [
+  {
+    name: 'Dev',
+    color: '#46dd4e',
+    priority: 'low'
+  },
+  {
+    name: 'Prod',
+    color: '#be7eff',
+    priority: 'critical'
+  },
+  {
+    name: 'Testing',
+    color: '#ff6f59',
+    priority: 'important'
+  }
+]
+
+tasks = [
+  {
+    title: 'Prepare feature A',
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
+    doing_time: 3,
+    justification: 'Some justification for this task',
+    details: '<p>Something nice</p>'
+  },
+  {
+    title: 'Fix feature B',
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
+    doing_time: 4,
+    justification: 'Fixing this features requires a decent amount of time',
+    details: '<p>Something nice</p>'
+  },
+  {
+    title: 'Create feature C',
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
+    doing_time: 2,
+    justification: 'This feature is simple to implement',
+    details: '<p>Something nice</p>'
+  },
+  {
+    title: 'Add new feature',
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
+    doing_time: 5,
+    justification: 'Sample task justification',
+    details: '<p>Something nice</p>'
+  },
+  {
+    title: 'Update feature A',
+    started_at: Time.zone.now,
+    finished_at: Time.zone.now,
+    doing_time: 4,
+    justification: 'Adding new complex options to feature A',
+    details: '<p>Something nice</p>'
+  }
+]
+
+boards.each do |b|
+  Board.create!(
+    title: b[:title],
+    visibility: b[:visibility]
+  )
+end
+
+Rails.logger.debug 'Boards have been created'
+
+Board.all.each do |b|
+  task_lists.each do |tl|
+    TaskList.create!(
+      name: tl[:name],
+      color: tl[:color],
+      priority: tl[:priority],
+      board_id: b.id
+    )
+  end
+end
+
+Rails.logger.debug 'Task Lists have been created'
+
+TaskList.all.each do |tl|
+  tasks.each do |task|
+    Task.create!(
+      title: task[:title],
+      started_at: task[:started_at],
+      finished_at: task[:finished_at],
+      doing_time: task[:doing_time],
+      justification: task[:justification],
+      details: task[:details],
+      task_list_id: tl.id
+    )
+  end
+end
+
+Rails.logger.debug 'Tasks have been created'
