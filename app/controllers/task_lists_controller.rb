@@ -2,7 +2,7 @@
 
 class TaskListsController < ApplicationController
   before_action :set_task_list, only: %i[show edit update destroy]
-  before_action :set_board, only: [:new]
+  before_action :set_board, only: [:new, :create]
   grant(
     user: :all,
     manager: :all,
@@ -20,11 +20,15 @@ class TaskListsController < ApplicationController
   def create
     @task_list = TaskList.new(task_list_params)
     @task_list.board_id = params[:board_id]
-    if @task_list.save
-      flash_and_redirect_to(:notice, 'List has been created successfully', boards_path)
+    if @board.able_to_create_list?
+      if @task_list.save
+        flash_and_redirect_to(:notice, 'List has been created successfully', boards_path)
+      else
+        flash[:alert] = "There was an error creating your list."
+        render 'new'
+      end
     else
-      flash[:alert] = "There was an error creating your list."
-      render 'new'
+      flash_and_redirect_to(:alert, 'You have reached the maximum amount of lists', boards_path)
     end
   end
 

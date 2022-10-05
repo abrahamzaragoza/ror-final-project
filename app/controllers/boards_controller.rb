@@ -31,8 +31,7 @@ class BoardsController < ApplicationController
         render 'new'
       end
     else
-      flash[:alert] = 'You have reached the maximum amount of boards'
-      redirect_to boards_path
+      flash_and_redirect_to(:alert, 'You have reached the maximum amount of boards', boards_path)
     end
   end
 
