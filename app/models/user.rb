@@ -10,9 +10,9 @@ class User < ApplicationRecord
   has_many :tasks, foreign_key: :author, dependent: :destroy, inverse_of: :author
   has_many :task_users, dependent: :destroy
   has_many :task, through: :task_users, dependent: :destroy
-
   has_many :subordinates, class_name: 'User', foreign_key: 'manager_id', dependent: :destroy, inverse_of: :manager
   belongs_to :manager, class_name: 'User', optional: true
+  has_one :payment, dependent: :destroy
 
   authorization_tiers(
     user: 'User - limited access',
