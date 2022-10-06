@@ -37,6 +37,7 @@ class BoardsController < ApplicationController
 
   def destroy
     @board.destroy
+    SendBoardDeleteEmailJob.perform_async(current_user.id)
     redirect_to boards_path
   end
 

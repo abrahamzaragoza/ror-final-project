@@ -41,9 +41,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super do |resource|
+      SendUpdateEmailJob.perform_async(resource.id)
+    end
+  end
 
   # DELETE /resource
   # def destroy
