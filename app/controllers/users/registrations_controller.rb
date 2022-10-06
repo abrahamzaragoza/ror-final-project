@@ -43,7 +43,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     super do |resource|
-      SendUpdateEmailJob.perform_async(resource.id)
+      if resource.security_updates
+        SendUpdateEmailJob.perform_async(resource.id)
+      end
     end
   end
 
