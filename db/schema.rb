@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_05_233157) do
+ActiveRecord::Schema.define(version: 2022_10_06_172214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 2022_10_05_233157) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "owner_id"
     t.index ["owner_id"], name: "index_boards_on_owner_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "email"
+    t.string "token"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -139,6 +148,7 @@ ActiveRecord::Schema.define(version: 2022_10_05_233157) do
     t.string "last_name"
     t.boolean "security_updates", default: true
     t.bigint "manager_id"
+    t.string "stripe_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
@@ -150,6 +160,7 @@ ActiveRecord::Schema.define(version: 2022_10_05_233157) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "boards", "users", column: "owner_id"
+  add_foreign_key "payments", "users"
   add_foreign_key "task_histories", "tasks"
   add_foreign_key "task_lists", "boards"
   add_foreign_key "task_users", "tasks"
