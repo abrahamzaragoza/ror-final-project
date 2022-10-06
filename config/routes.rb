@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   root 'pages#index'
   get 'about', to: 'pages#about'
+  get 'team', to: 'pages#team'
   resources :users, only: [:show]
   resources :plans
   resources :boards do

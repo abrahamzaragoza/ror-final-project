@@ -4,7 +4,7 @@
     class: 'btn btn-sm btn-primary', style: 'width: 120px;' %>
 </div>
 <div class="d-flex justify-content-evenly flex-wrap p-3" style="box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; height: 80vh;">
-  <% current_user.boards.all.each do |board| %>
+  <% @boards.all.each do |board| %>
     <% board_presenter = BoardPresenter.new(board) %>
     <div class="card m-3 c-shadow" style="width: 18rem; height: 250px;">
       <div class="card-body">

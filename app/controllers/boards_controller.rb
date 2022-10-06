@@ -2,6 +2,7 @@
 
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[show edit update destroy]
+  before_action :set_boards, only: [:index]
   grant(
     user: %i[show index],
     manager: :all,
@@ -10,9 +11,7 @@ class BoardsController < ApplicationController
 
   def show; end
 
-  def index
-    @boards = Board.all
-  end
+  def index; end
 
   def new
     @board = Board.new
@@ -49,5 +48,9 @@ class BoardsController < ApplicationController
 
   def board_params
     params.require(:board).permit(%i[title visibility owner_id])
+  end
+
+  def set_boards
+    @boards = current_user.return_manager_boards
   end
 end

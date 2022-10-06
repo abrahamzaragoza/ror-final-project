@@ -25,7 +25,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", user_path(current_user), class: 'dropdown-item' %> </li>
               <li><%= link_to "Boards", boards_path, class: 'dropdown-item' %></li>
-              <li><%= link_to "Team", boards_path, class: 'dropdown-item' %></li>
+              <li><%= link_to "Team", team_path, class: 'dropdown-item' %></li>
               <li>
                 <%= link_to "Logout", destroy_user_session_path, method: :delete,
                   class: "dropdown-item" %>
