@@ -5,6 +5,11 @@ module FlashMessage
 
   private
 
+  def flash_and_render(type, msg, route)
+    flash[type] = msg
+    render route
+  end
+
   def flash_and_redirect_to(type, msg, route)
     flash[type] = msg
     redirect_to route

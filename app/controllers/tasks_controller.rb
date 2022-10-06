@@ -3,6 +3,11 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_task_list, only: %i[new create]
+  grant(
+    user: :all,
+    manager: :all,
+    admin: :all
+  )
 
   def show; end
 
@@ -22,8 +27,7 @@ class TasksController < ApplicationController
     if @task.save
       flash_and_redirect_to(:notice, 'Task was created successfully.', board_path(boards_path))
     else
-      flash[:alert] = "There was an error creating your task."
-      render 'new'
+      flash_and_render(:alert, 'There was an error creating your task.', :new)
     end
   end
 

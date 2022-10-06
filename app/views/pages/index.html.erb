@@ -19,9 +19,9 @@
   <button class="btn offset-md-10 btn-primary btn-purple" type="button">Start Trial</button>
 </div>
 
-<div class="row mt-5 mx-4">
+<div class="d-flex justify-content-evenly p-5">
   <% @plans.each do |plan| %>
-  <div class="col my-3">
+  <div class="my-3">
     <%= render 'shared/plan_card', plan: plan %>
   </div>
   <% end %>

@@ -1,0 +1,28 @@
+<% user_presenter = UserPresenter.new(@user) %>
+<div class="p-5 text-bg-purple border rounded-3 mt-5">
+  <h3 class="text-center">
+    <%= "#{@user.first_name}'s Profile" %>
+    <%= link_to '<i class="fa-regular fa-pen-to-square"></i>'.html_safe, edit_user_registration_path,
+        class: 'btn btn-sm btn-light mr-1 w-2r' %>
+  </h3>
+</div>
+<div class="p-5 text-bg-light border rounded-3 mt-5 col-md-8 offset-md-1">
+  <div class="row text-15r">
+    <p class="col-md-3"><strong class="text-muted">first name:</strong></p><p class="col-md-4"><%= @user.first_name %></p>
+  </div>
+    <hr>
+  <div class="row text-15r">
+    <p class="col-md-3"><strong class="text-muted">last name:</strong></p><p class="col-md-4"><%= @user.last_name %></p>
+  </div>
+  <hr>
+  <div class="row text-15r">
+    <p class="col-md-3"><strong class="text-muted">email:</strong></p><p class="col-md-4"><%= @user.email %></p>
+  </div>
+    <hr>
+  <div class="row text-15r">
+    <p class="col-md-4"><strong class="text-muted">Security Updates:</strong></p>
+    <p class="col-md-4" style="color: <%= user_presenter.security_update_color %>">
+      <%= user_presenter.security_update_status %>
+    </p>
+  </div>
+</div>
