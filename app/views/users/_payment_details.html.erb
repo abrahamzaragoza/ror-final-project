@@ -1,0 +1,6 @@
+<% if user.payment.present? %>
+  Si hay payment jaja k raro
+<% else %>
+  <%= link_to 'Add Payment Method <i class="fa-solid fa-credit-card"></i>'.html_safe, new_payment_path,
+      class: 'btn btn-purple btn-lg' %>
+<% end %>

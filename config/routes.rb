@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   get 'team', to: 'pages#team'
   resources :users, only: [:show]
+  resources :payments, only: %i[new create]
   resources :plans
   resources :boards do
     resources :task_lists, shallow: true do

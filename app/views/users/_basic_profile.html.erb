@@ -1,0 +1,21 @@
+<% user_presenter = UserPresenter.new(user) %>
+<div class="p-5 text-bg-light border rounded-3 mt-5 col-md-8 offset-md-1">
+  <div class="row text-15r">
+    <p class="col-md-3"><strong class="text-muted">first name:</strong></p><p class="col-md-5"><%= user.first_name %></p>
+  </div>
+    <hr>
+  <div class="row text-15r">
+    <p class="col-md-3"><strong class="text-muted">last name:</strong></p><p class="col-md-5"><%= user.last_name %></p>
+  </div>
+  <hr>
+  <div class="row text-15r">
+    <p class="col-md-3"><strong class="text-muted">email:</strong></p><p class="col-md-5"><%= user.email %></p>
+  </div>
+    <hr>
+  <div class="row text-15r">
+    <p class="col-md-4"><strong class="text-muted">Security Updates:</strong></p>
+    <p class="col-md-4" style="color: <%= user_presenter.security_update_color %>">
+      <%= user_presenter.security_update_status %>
+    </p>
+  </div>
+</div>

@@ -18,8 +18,9 @@ class StripeService
   end
 
   def create_card_token(params)
-    Stripe::Token.create({ card: { number: params[:card_number], exp_month: params[:exp_month],
-                                   exp_year: params[:exp_year], cvc: params[:cvv] } })
+    payment = params[:payment]
+    Stripe::Token.create({ card: { number: payment[:card_number], exp_month: payment[:card_expires_month],
+                                   exp_year: payment[:card_expires_year], cvc: payment[:card_cvv] } })
   end
 
   def create_stripe_card(params, user)
