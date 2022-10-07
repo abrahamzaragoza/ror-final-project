@@ -2,6 +2,7 @@
 
 class PaymentsController < ApplicationController
   before_action :set_stripe_service, :set_user, only: [:create]
+  rescue_from Stripe::StripeError, with: :stripe_error_method
   grant(
     manager: :all,
     admin: :all
@@ -14,13 +15,13 @@ class PaymentsController < ApplicationController
   def create
     @payment = Payment.new(payment_params)
     @payment.user_id = current_user.id
-    @stripe_customer = @stripe_service.find_or_create_customer(@user)
-    @card = @stripe_service.create_stripe_card(params, @user)
+    @stripe_customer = @stripe_service.find_or_create_customer(user)
+    @card = @stripe_service.create_stripe_card(params, user)
     @payment.card_id = @card.id
     if @payment.save
       flash_and_redirect_to(:notice, 'You have successfully added a payment method.', root_path)
     else
-      flash_andrender(:alert, 'Something went wrong with your petition.', :new)
+      flash_and_render(:alert, 'Something went wrong with your petition.', :new)
     end
   end
 
@@ -36,5 +37,9 @@ class PaymentsController < ApplicationController
 
   def set_user
     @user = User.find(current_user.id)
+  end
+
+  def stripe_error_method(exception)
+    flash_and_render(:alert, exception.message.to_s, :new)
   end
 end
