@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   resources :plans
   resources :boards do
     resources :task_lists, shallow: true do
-      resources :tasks, shallow: true
+      resources :tasks, shallow: true do
+        resources :task_users, only: %i[new create]
+      end
     end
   end
 end

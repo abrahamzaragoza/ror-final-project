@@ -16,11 +16,18 @@ class Task < ApplicationRecord
   after_create :add_task_history_record_on_create
   before_update :add_task_history_record_on_update
 
+  accepts_nested_attributes_for :task_users
+
   def add_task_history_record_on_create
     TaskHistory.create(task: self, list: task_list.name)
   end
 
   def add_task_history_record_on_update
     TaskHistory.create(task: self, list: task_list.name) unless task_list_id == task_list_id_was
+  end
+
+  def not_assignated_users
+    user_ids = task_users.pluck(:user_id)
+    User.where(manager_id: author).where.not(id: user_ids)
   end
 end

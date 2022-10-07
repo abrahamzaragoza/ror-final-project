@@ -9,7 +9,9 @@ class TasksController < ApplicationController
     admin: :all
   )
 
-  def show; end
+  def show
+    @task_user = TaskUser.new
+  end
 
   def index; end
 
@@ -60,5 +62,9 @@ class TasksController < ApplicationController
 
   def boards_path
     @task_list.board_id
+  end
+
+  def set_unassigned_users
+    @users = User.where
   end
 end
