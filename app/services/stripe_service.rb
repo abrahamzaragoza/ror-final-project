@@ -48,14 +48,14 @@ class StripeService
   end
 
   def create_subscription(user, plan)
-    if user.free_trial_expired
-      subscription = Stripe::Subscription.create({  customer: user.stripe_id,
+    subscription = if user.free_trial_expired
+                     Stripe::Subscription.create({  customer: user.stripe_id,
                                                     items: [{ price: plan.stripe_price_id }] })
-    else
-      subscription = Stripe::Subscription.create({  customer: user.stripe_id,
+                   else
+                     Stripe::Subscription.create({  customer: user.stripe_id,
                                                     items: [{ price: plan.stripe_price_id }],
                                                     trial_end: Time.now.to_i + 15.days })
-    end
+                   end
     user.update(stripe_subscription_id: subscription.id)
   end
 
