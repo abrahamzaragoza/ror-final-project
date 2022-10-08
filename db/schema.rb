@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_08_023712) do
+ActiveRecord::Schema.define(version: 2022_10_08_040106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_023712) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "stripe_product_id"
+    t.string "stripe_price_id"
   end
 
   create_table "task_histories", force: :cascade do |t|
@@ -149,6 +150,8 @@ ActiveRecord::Schema.define(version: 2022_10_08_023712) do
     t.boolean "security_updates", default: true
     t.bigint "manager_id"
     t.string "stripe_id"
+    t.boolean "free_trial_expired", default: false
+    t.string "stripe_subscription_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
