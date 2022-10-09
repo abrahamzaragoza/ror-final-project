@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_08_040106) do
+ActiveRecord::Schema.define(version: 2022_10_09_215830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -124,6 +124,20 @@ ActiveRecord::Schema.define(version: 2022_10_08_040106) do
     t.index ["task_list_id"], name: "index_tasks_on_task_list_id"
   end
 
+  create_table "user_plans", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.uuid "plan_id", null: false
+    t.integer "status"
+    t.integer "current_period_end"
+    t.integer "current_period_start"
+    t.integer "start_date"
+    t.integer "trial_end"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_user_plans_on_plan_id"
+    t.index ["user_id"], name: "index_user_plans_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -170,5 +184,7 @@ ActiveRecord::Schema.define(version: 2022_10_08_040106) do
   add_foreign_key "task_users", "users"
   add_foreign_key "tasks", "task_lists"
   add_foreign_key "tasks", "users", column: "author_id"
+  add_foreign_key "user_plans", "plans"
+  add_foreign_key "user_plans", "users"
   add_foreign_key "users", "users", column: "manager_id"
 end

@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :subordinates, class_name: 'User', foreign_key: 'manager_id', dependent: :destroy, inverse_of: :manager
   belongs_to :manager, class_name: 'User', optional: true
   has_one :payment, dependent: :destroy
+  has_one :user_plan, dependent: :destroy
+  alias_attribute :user_plan, :plan
 
   authorization_tiers(
     user: 'User - limited access',
