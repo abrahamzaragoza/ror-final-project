@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   root 'pages#index'
-  get 'about', to: 'pages#about'
+  get 'free-trial', to: 'pages#free_trial'
   get 'team', to: 'pages#team'
   resources :users, only: [:show]
   resources :payments, only: %i[new create]

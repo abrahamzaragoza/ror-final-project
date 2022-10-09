@@ -9,7 +9,7 @@
     </h6><br>
     <h4 class="card-subtitle mb-2 text-center">Price: <%= "#{plan.price} #{plan.price_currency}" %></h4>
     <div class="position-relative py-4">
-      <button class="btn btn-success position-absolute top-5 start-50 translate-middle" type="button">Join Plan</button>
+      <%= link_to 'Join Plan', plan_path(plan), class: 'btn btn-success position-absolute top-5 start-50 translate-middle' %>
     </div>
   </div>
 </div>
