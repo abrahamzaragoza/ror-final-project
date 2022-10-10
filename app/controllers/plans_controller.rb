@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class PlansController < ApplicationController
-  before_action :set_plan, only: %i[edit update destroy]
+  before_action :set_plan, only: %i[show edit update destroy]
   grant(
-    manager: :index,
+    manager: %i[index show],
     admin: :all
   )
 

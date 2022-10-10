@@ -1,0 +1,23 @@
+<h2 class="text-center text-purple" style="font-weight: bold;">GET FULL ACCESS FOR A FREE 15 DAYS TRIAL!</h3>
+<div class="h-100 p-5 text-bg-dark border rounded-3 mt-5 bg-gradient">
+  <h3>Get a FREE TRIAL the first time you pick a plan.</h3>
+  <hr>
+  <p class="text-15r" style="">Get a FREE TRIAL the first time you pick a plan. That's right, no funny business. Set up
+    your account and use any of our plans to get accustomed to TeamTask's powerful managin solutions. If you are
+    satisfied, there's no further commitment - just cancel at any time!</p>
+</div>
+<p class="mx-2" >
+  <em>It's never been easier to get the full experience of a plan before committing. Get started today with a free trial.</em>
+</p>
+<div class="mx-2 my-5">
+  <h4>Choose your plan and start managing</h4>
+  <p style="font-size: 1.3rem;">Our plans are the best way to manage your accounts for years to come. Manage hundreds of employees, projects, and
+  issues in one convenient location. Plan's powerful, customizable features make it easy for you to stay on top of everything remotely.</p>
+</div>
+<div class="d-flex justify-content-evenly p-5">
+  <% @plans.each do |plan| %>
+  <div class="my-3">
+    <%= render 'shared/plan_card', plan: plan %>
+  </div>
+  <% end %>
+</div>

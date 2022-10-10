@@ -1,9 +1,9 @@
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 35vw;">
   <div class="card-body">
     <h5 class="card-title"><%= task.title %></h5>
     <div class="card-subtitle text-muted">
       Created by:
-      <p class="badge text-bg-purple"><%= task.author.email %></p>
+      <p class="badge text-bg-purple"><%= task.author.full_name %></p>
     </div>
     <div class="cart-text text-muted">
       assigned: <%= render 'tasks/task_assigned_users', task: task %>
@@ -30,4 +30,3 @@
     <%= render 'tasks/task_history', task: task %>
   </div>
 </div>
-

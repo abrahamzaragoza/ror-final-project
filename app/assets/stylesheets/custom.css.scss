@@ -88,6 +88,10 @@ body {
     font-size: 1.5rem;
   }
 
+  .text-125r {
+    font-size: 1.25rem;
+  }
+
   .btn-text {
     text-decoration: none;
     color: black;
@@ -111,5 +115,14 @@ body {
 
   .c-shadow {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .bg-gradient {
+    background: rgb(195,94,238) !important;
+    background: linear-gradient(90deg, rgba(156,64,195,1) 0%, rgba(159,94,238,1) 35%, rgba(94,95,238,1) 100%) !important;
+  }
+
+  .semi-bold {
+    font-weight: 600;
   }
 }

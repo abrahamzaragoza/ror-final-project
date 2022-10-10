@@ -9,4 +9,6 @@ class Plan < ApplicationRecord
             numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
   monetize :price_cents
+
+  has_one :user_plan, dependent: :destroy
 end

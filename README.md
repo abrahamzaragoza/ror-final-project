@@ -1,36 +1,26 @@
-# README
+# TeamTask
+TeamTask is a task management app that helps with planning, grouping and prioritizing tasks. You can use it as a part of your project management process or as standalone tool for creating, assigning, monitoring and tracking of tasks in any scale business.
 
-## Authentication
+This project was developed using the framework Ruby on Rails and trying to apply the rubocop guidelines.
 
-For authentication Devise has been the choosen gem.
+One of the main ideas behind this project was to manage access levels through all the project. We simplified access management by providing single sign (Devise) on feature and multiple users on each project. The user can have different roles. To achieve this
+we choose to user Authorized Persona, external add-on that handles authorization access.
 
-```
-gem 'devise'
-```
+## Gems used
+- Devise
+- Devise Intivations
+- Authorized Persona
+- Money Rails
+- Stripe
+- Sidekiq
+- Image Processing
+- Bootstrap
+- Faker
+- Letter Opener
+- Rubocop Rails
+- Rubocop RSpec
+- Factory Bot
 
-```
-# install devise
-rails g devise:install
-# generate devise views in order to customize them in the future
-rails g devise:views
-```
-
-Devise requires a default mailer url (localhost @ dev) in the environment.
-
-```
-config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-```
-
-## Mailer @ development
-
-For development Letter Opener has been choosen, this will allow us to preview the emails in the browser instead of sending them, which is a bad practice to send emails in development.
-
-```
-group :development do
-  gem 'letter_opener'
-end
-```
-
-```
-  config.action_mailer.delivery_method = :letter_opener
-```
+## Pending features
+- API - using X-API-Token
+- User two-way signin (SMS)

@@ -1,2 +1,7 @@
-<%= render 'task', task: @task %>
+<div class="d-flex justify-content-center">
+  <%= render 'task', task: @task %>
+</div>
+<div class="d-flex justify-content-center">
+  <%= render template: 'task_users/new', task: @task, task_user: @task_user %>
+</div>
 <%= link_to 'Back to Board', board_path(@task.task_list.board), class: 'btn btn-purple offset-sm-10 mt-3' %>
