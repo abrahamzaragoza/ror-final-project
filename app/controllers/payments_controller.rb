@@ -15,8 +15,8 @@ class PaymentsController < ApplicationController
   def create
     @payment = Payment.new(payment_params)
     @payment.user_id = current_user.id
-    @stripe_customer = @stripe_service.find_or_create_customer(user)
-    @card = @stripe_service.create_stripe_card(params, user)
+    @stripe_customer = @stripe_service.find_or_create_customer(@user)
+    @card = @stripe_service.create_stripe_card(params, @user)
     @payment.card_id = @card.id
     if @payment.save
       flash_and_redirect_to(:notice, 'You have successfully added a payment method.', root_path)

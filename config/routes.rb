@@ -26,4 +26,5 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :user_plans, only: %i[create destroy]
 end

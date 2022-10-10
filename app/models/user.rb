@@ -14,7 +14,7 @@ class User < ApplicationRecord
   belongs_to :manager, class_name: 'User', optional: true
   has_one :payment, dependent: :destroy
   has_one :user_plan, dependent: :destroy
-  alias_attribute :user_plan, :plan
+  alias_attribute :plan, :user_plan
 
   authorization_tiers(
     user: 'User - limited access',
