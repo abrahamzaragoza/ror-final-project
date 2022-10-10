@@ -11,6 +11,10 @@ class TasksController < ApplicationController
 
   def show
     @task_user = TaskUser.new
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def index; end

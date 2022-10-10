@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_one :payment, dependent: :destroy
   has_one :user_plan, dependent: :destroy
   alias_attribute :plan, :user_plan
+  after_create :add_manager_id
 
   authorization_tiers(
     user: 'User - limited access',
@@ -54,5 +55,11 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def add_manager_id
+    if invited_by_id.present?
+      update(manager_id: invited_by_id)
+    end
   end
 end

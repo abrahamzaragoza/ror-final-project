@@ -9,8 +9,6 @@ class TaskListsController < ApplicationController
     admin: :all
   )
 
-  def show; end
-
   def new
     @task_list = TaskList.new
   end

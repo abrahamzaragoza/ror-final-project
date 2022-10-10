@@ -21,7 +21,7 @@ class InvitationsController < Devise::InvitationsController
   def create
     self.resource = invite_resource
     resource.authorization_tier = 'user'
-    resource.invited_by_id, resource.manager_id = current_inviter.id
+    resource.invited_by_id = current_inviter.id
     resource_invited = resource.errors.empty?
 
     yield resource if block_given?

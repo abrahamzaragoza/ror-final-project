@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     if @user.stripe_subscription_id.present?
       @user_plan = UserPlan.find(@user.plan.id)
     end
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   private

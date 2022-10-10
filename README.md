@@ -24,3 +24,8 @@ we choose to user Authorized Persona, external add-on that handles authorization
 ## Pending features
 - API - using X-API-Token
 - User two-way signin (SMS)
+- Restriction -  edit task
+- Admin / Manager edit users profile
+- Block manager/team based on plan subscription status
+- Team user dependency on manager plan status
+- Boards visibility - readonly / edit

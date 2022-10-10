@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   resources :payments, only: %i[new create]
   resources :plans
   resources :boards do
-    resources :task_lists, shallow: true do
-      resources :tasks, shallow: true do
+    resources :task_lists, shallow: true, except: %i[show index] do
+      resources :tasks, shallow: true, except: [:index] do
         resources :task_users, only: %i[new create]
       end
     end

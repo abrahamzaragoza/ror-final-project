@@ -2,6 +2,7 @@
 
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[show edit update destroy]
+  before_action :set_task_lists, only: [:show]
   before_action :set_boards, only: [:index]
   grant(
     user: %i[show index],
@@ -9,7 +10,12 @@ class BoardsController < ApplicationController
     admin: :all
   )
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
 
   def index; end
 
@@ -53,5 +59,9 @@ class BoardsController < ApplicationController
 
   def set_boards
     @boards = current_user.return_manager_boards
+  end
+
+  def set_task_lists
+    @task_lists = TaskList.where(board_id: @board.id)
   end
 end
