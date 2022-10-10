@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
+# this is an example of a complex, well done presenter
+# remember to add spaces
+# although it would be very easy, the singleton 
+# design pattern would have very useful to replace
+# the use of many declarations of the strftime method attributes
+# https://levelup.gitconnected.com/alternatives-to-global-variables-34982becfcc 
 class UserPresenter
   def initialize(user)
     @user = user
+    # example of space
     if @user.stripe_subscription_id.present?
       @user_plan = UserPlan.find(@user.plan.id)
       @plan = Plan.find(@user_plan.plan_id)
@@ -42,6 +49,7 @@ class UserPresenter
       'unpaid' => '220,53,69' }[@user_plan.status]
   end
 
+  # you already had
   def suscribed_plan_nex_payday
     Time.at(@user_plan.start_date).strftime('%m/%d/%Y')
   end

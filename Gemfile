@@ -23,13 +23,19 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'authorized_persona'
+# 
+# try to keep gems separated with withspace
 gem 'devise'
+gem 'authorized_persona' # its a good practice to specify the version that your lock had. to avoid errors when adding new gems.
 gem 'devise_invitable', '~> 2.0.0'
+# 
 gem 'font-awesome-sass', '~> 6.2.0'
+# Comment
 gem 'money-rails'
-gem 'sidekiq'
+# comment
 gem 'stripe'
+# Comment note I changed the ordering.
+gem 'sidekiq'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

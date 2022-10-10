@@ -2,17 +2,18 @@
   <div class="col-md-3-custom h-100  bg-light rounded-3 mb-5 list-container task-list-container">
     <div class="relative border bg-light task-list-title task-list-header">
       <div class="d-fex p-2 text-15r justify-content-between">
-        <p class="col-md fs-4"><%= list.name %></p>
+        <p class="col-md fs-4"><%= list.name  %></p>
       </div>
       <div class="task-list-color" style="background-color: <%= list.color %> !important">.</div>
       <div class="d-flex justify-content-between">
         <p class="badge <%= list_presenter.priotity_badge_color %>"><%= list.priority %></p>
-        <p class="text-9r">Tasks: <%= list.tasks.all.count %></p>
+        <p class="text-9r">Tasks: <%= list.tasks.all.count # this is the class of information we want to have in a presenter 
+        %></p>
         <%= render 'task_list_dropdown_button', list: list %>
       </div>
     </div>
     <div>
-      <% list.tasks.each do |task| %>
+      <% list.tasks.each do |task| # list_presenter.tasks... %>
       <div class="p-3 text-bg-light border rounded-3" id="task-container">
         <p class="m-0">
           <%= link_to task.title, task_path(task), style: 'font-weight: bold; text-decoration: none; color: #01115b;' %>

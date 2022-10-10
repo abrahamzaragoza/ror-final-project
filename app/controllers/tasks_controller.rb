@@ -27,9 +27,13 @@ class TasksController < ApplicationController
     @list = TaskList.find(@task.task_list_id)
   end
 
+  # just as a word of knowledge, it is a good practice 
+  # to separate logic of controllers and ruby methods
+  # into chunks in the method by adding a white space
   def create
     @task = Task.new(task_params)
     @task.author = current_user
+    # example this would be just a whitespace ^
     if @task.save
       flash_and_redirect_to(:notice, 'Task was created successfully.', board_path(boards_path))
     else

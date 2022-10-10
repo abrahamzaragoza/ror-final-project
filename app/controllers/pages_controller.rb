@@ -2,13 +2,15 @@
 
 class PagesController < ApplicationController
   skip_before_action :authorize!, only: [:index]
-  before_action :set_team, only: [:team]
-  before_action :able_to_get_free_trial, only: [:free_trial]
+  before_action :set_team, only: [:team] # don't do this, there's only one method using it. what's the use? 
+  before_action :able_to_get_free_trial, only: [:free_trial] # now, this is an example of where to use a filter.
   grant(
     user: %i[index team],
     manager: :all
   )
 
+  # repetitive action right here
+  # could have used a filter 
   def index
     @plans = Plan.all
   end

@@ -76,6 +76,8 @@ plans.each do |plan_mock|
   )
 end
 
+# on seeds there is no need to call the logger itself
+# puts write into the debug logger. 
 Rails.logger.debug 'Plans have been created'
 
 boards = [

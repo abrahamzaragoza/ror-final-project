@@ -18,6 +18,12 @@ class TaskListsController < ApplicationController
   def create
     @task_list = TaskList.new(task_list_params)
     @task_list.board_id = params[:board_id]
+    # this able_to_create_list should have been added
+    # into the model. 
+    # please remember. Fat Model, Skinny Controller. 
+    #before save and throwing an error while returning
+    # false in the before_save 
+    # or also, a custom validation would have been enough
     if @board.able_to_create_list? && @task_list.save
       flash_and_redirect_to(:notice, 'List has been created successfully', boards_path)
     else

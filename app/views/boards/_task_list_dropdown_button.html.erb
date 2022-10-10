@@ -1,7 +1,7 @@
 <div class="btn-group mr-1">
   <%= link_to '<i class="fa-solid fa-gear"></i>'.html_safe, '#', data: { bs_toggle: 'dropdown' } %>
   <ul class="dropdown-menu">
-    <% btn_presenter = ButtonPresenter.new %>
+    <% btn_presenter = ButtonPresenter.new # presenters should be declared at the first line %>
     <li>
       <%= link_to 'Edit', edit_task_list_path(list), class: 'dropdown-item' %>
     </li>

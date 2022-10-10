@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :restrict_access
   grant(
     user: :all
-  )
+  ) # missing whitespace
   def show
     @user = User.find(params[:id])
     if @user.stripe_subscription_id.present?

@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+=begin
+NOTE: Don't do repetitive stuff.
+Extract it as a method.
+Seems a little repetitive to me. 
+Modularize stuff. 
+=end
+
 module FlashMessage
   include ActiveSupport::Concern
 

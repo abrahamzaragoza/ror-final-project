@@ -4,6 +4,8 @@ class User < ApplicationRecord
   include AuthorizedPersona::Persona
   MAX_BOARDS = 10
 
+  # separate these. look into the following link for
+  # proper ordering of macros: https://github.com/rubocop/rails-style-guide#macro-style-methods 
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable
   has_many :boards, foreign_key: :owner, dependent: :destroy, inverse_of: :owner
@@ -25,12 +27,12 @@ class User < ApplicationRecord
 
   validates :authorization_tier, inclusion: { in: authorization_tier_names }
 
-  def can_create_board?
+  def can_create_board? # again, this could have been a validation
     boards.count < MAX_BOARDS
   end
 
   def manager?
-    authorization_tier.match?('manager')
+    authorization_tier.match?('manager') # counted
   end
 
   def return_manager
@@ -45,10 +47,16 @@ class User < ApplicationRecord
     end
   end
 
-  def return_manager_team
+  def return_manager_team # return is a protected word
+    # in the programming lingo. avoid to use them in 
+    # the methods namings. could have been only 
+    # managers_team. and that would have been more ruby
     if manager?
       subordinates
     else
+      # no need to do this, could have chained
+      # manager.subordinates, since manager returns
+      # the manager itself
       User.find(manager_id).subordinates
     end
   end

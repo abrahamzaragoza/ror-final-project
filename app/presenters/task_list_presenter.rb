@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# this is an example of a easy, helperful presenter
 class TaskListPresenter
   def initialize(list)
     @list = list

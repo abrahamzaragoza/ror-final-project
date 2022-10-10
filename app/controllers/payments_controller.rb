@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PaymentsController < ApplicationController
-  before_action :set_stripe_service, :set_user, only: [:create]
+  before_action :set_stripe_service, :set_user, only: [:create] # don't do this
   rescue_from Stripe::StripeError, with: :stripe_error_method
   grant(
     manager: :all,
@@ -40,6 +40,6 @@ class PaymentsController < ApplicationController
   end
 
   def stripe_error_method(exception)
-    flash_and_render(:alert, exception.message.to_s, :new)
+    flash_and_render(:alert, exception.message.to_s, :new) # Are you showing the direct error to the user? Wouldn't it be better to parse it. 
   end
 end

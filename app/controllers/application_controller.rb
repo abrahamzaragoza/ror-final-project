@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # Please note that the following before
+  # action will be applied to all controllers
+  # that inherit from the application controller
+  # this may pose a security risk 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit(:first_name, :last_name, :email, :password, :authorization_tier, :security_updates)
