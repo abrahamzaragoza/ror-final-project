@@ -3,8 +3,19 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :set_task_list, only: %i[new create]
+  grant(
+    user: :all,
+    manager: :all,
+    admin: :all
+  )
 
-  def show; end
+  def show
+    @task_user = TaskUser.new
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
 
   def index; end
 
@@ -22,8 +33,7 @@ class TasksController < ApplicationController
     if @task.save
       flash_and_redirect_to(:notice, 'Task was created successfully.', board_path(boards_path))
     else
-      flash[:alert] = "There was an error creating your task."
-      render 'new'
+      flash_and_render(:alert, 'There was an error creating your task.', :new)
     end
   end
 
@@ -56,5 +66,9 @@ class TasksController < ApplicationController
 
   def boards_path
     @task_list.board_id
+  end
+
+  def set_unassigned_users
+    @users = User.where
   end
 end

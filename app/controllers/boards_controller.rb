@@ -2,12 +2,22 @@
 
 class BoardsController < ApplicationController
   before_action :set_board, only: %i[show edit update destroy]
+  before_action :set_task_lists, only: [:show]
+  before_action :set_boards, only: [:index]
+  grant(
+    user: %i[show index],
+    manager: :all,
+    admin: :all
+  )
 
-  def show; end
-
-  def index
-    @boards = Board.all
+  def show
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
+
+  def index; end
 
   def new
     @board = Board.new
@@ -18,11 +28,10 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
     @board.owner = current_user
-    if @board.save
+    if current_user.can_create_board? && @board.save
       flash_and_redirect_to(:notice, 'Board has been created successfully', @board)
     else
-      flash[:alert] = "There was an error creating your board."
-      render 'new'
+      flash_and_render(:alert, 'There was an error creating your board.', :new)
     end
   end
 
@@ -34,6 +43,7 @@ class BoardsController < ApplicationController
 
   def destroy
     @board.destroy
+    SendBoardDeleteEmailJob.perform_async(current_user.id)
     redirect_to boards_path
   end
 
@@ -45,5 +55,13 @@ class BoardsController < ApplicationController
 
   def board_params
     params.require(:board).permit(%i[title visibility owner_id])
+  end
+
+  def set_boards
+    @boards = current_user.return_manager_boards
+  end
+
+  def set_task_lists
+    @task_lists = TaskList.where(board_id: @board.id)
   end
 end

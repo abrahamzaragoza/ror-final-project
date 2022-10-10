@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
 class PlansController < ApplicationController
-  before_action :set_plan, only: %i[edit update destroy]
-
-  def show; end
+  before_action :set_plan, only: %i[show edit update destroy]
+  grant(
+    manager: %i[index show],
+    admin: :all
+  )
 
   def index
     @plans = Plan.all
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new
@@ -16,16 +22,11 @@ class PlansController < ApplicationController
   def edit; end
 
   def create
-    if can_create_plan?
-      @plan = Plan.new(plan_params)
-      if @plan.save
-        flash_and_redirect_to(:notice, 'Plan was created successfully.', plans_path)
-      else
-        flash[:alert] = "There was an error creating your plan."
-        render 'new'
-      end
+    @plan = Plan.new(plan_params)
+    if can_create_plan? && @plan.save
+      flash_and_redirect_to(:notice, 'Plan was created successfully.', plans_path)
     else
-      flash_and_redirect_to(:alert, 'The maximum amount of plans have been reached.', plans_path)
+      flash_and_render(:alert, 'There was an error creating your plan.', :new)
     end
   end
 

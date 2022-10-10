@@ -1,0 +1,31 @@
+<h2 class="text-center mt-5">
+  Configure Team
+</h2>
+<div class="mt-5">
+  <table class="table">
+    <thead>
+      <th class="col">#</th>
+      <th class="col">Name</th>
+      <th class="col">Email</th>
+      <th class="col">Actions</th>
+    </thead>
+    <tbody>
+      <% @team.all.each_with_index do |user, index| %>
+      <tr>
+        <th><%= index %></th>
+        <td><%= user.first_name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if current_user.manager_or_above? %>
+            <%= link_to 'Delete', registration_path(user), method: :delete, class: 'btn btn-danger btn-sm',
+                data: { confirm: "Are you sure?" } %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if current_user.manager_or_above? %>
+    <%= link_to 'Invite <i class="fa-solid fa-plus"></i>'.html_safe, new_user_invitation_path, class: 'btn btn-purple offset-md-10' %>
+  <% end %>
+</div>

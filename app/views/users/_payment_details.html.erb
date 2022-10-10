@@ -1,0 +1,9 @@
+<% if user.payment.present? %>
+  <h5>
+    You already have successfully register a payment method to your account.
+    <i class="fa-solid fa-check" style="color: green;"></i>
+  </h3>
+<% else %>
+  <%= link_to 'Add Payment Method <i class="fa-solid fa-credit-card"></i>'.html_safe, new_payment_path,
+      class: 'btn btn-purple btn-lg' %>
+<% end %>

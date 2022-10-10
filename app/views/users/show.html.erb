@@ -1,0 +1,30 @@
+<% user_presenter = UserPresenter.new(current_user) %>
+<div class="p-5 text-bg-purple border rounded-3 mt-5">
+  <h3 class="text-center">
+    <%= "#{@user.first_name}'s Profile" %>
+    <%= link_to '<i class="fa-regular fa-pen-to-square"></i>'.html_safe, edit_user_registration_path,
+        class: 'btn btn-sm btn-light mr-1 w-2r' %>
+  </h3>
+</div>
+<div class="offset-md-2">
+
+  <%= render 'basic_profile', user: @user %>
+  <h3 class="p-5 col-md-8 offset-md-1">Payment Details</h3>
+  <div class="p-5 text-bg-light border rounded-3 col-md-8 offset-md-1">
+    <%= render 'payment_details', user: @user %>
+    <% if user_presenter.user_has_subscription? %>
+    <hr>
+    <p class="text-125r semi-bold">Currently suscribed to
+      <strong><%= user_presenter.subscribed_plan_name %></strong>, your current status is
+      <span style="color: rgba(<%= user_presenter.suscribed_plan_status_color %>) !important;"><%= user_presenter.suscribed_plan_status %></span>.
+    </p>
+    <p class="text-125r semi-bold"><%= user_presenter.subscribed_trial_info %></p>
+    <p class="text-125r semi-bold">Next payment is due to <strong><%= user_presenter.suscribed_plan_nex_payday %></strong></p>
+    <hr>
+    <div>
+      <span class="text-125r">Not satisfied with our service?</span>
+      <%= link_to 'Cancel Plan', user_plan_path(current_user.plan.id), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
+    </div>
+    <% end %>
+  </div>
+</div>

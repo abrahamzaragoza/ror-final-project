@@ -1,0 +1,11 @@
+<%= form_with model: [@task, @task_user] do |f|  %>
+<div class="d-flex justify-content-evenly">
+  <div class="field mt-2" style="font-weight: bold;">
+    <%= f.label :user_id, "Add team member to task", class: 'form-label' %>
+    <%= f.collection_select :user_id, @task.not_assignated_users, :id, :full_name, {}, class: 'form-select', style: 'width: 20rem;' %>
+  </div>
+  <div class="actions mt-4">
+    <%= f.submit 'Add user', class: 'btn btn-purple mx-3' %>
+  </div>
+</div>
+<% end %>

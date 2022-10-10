@@ -1,4 +1,5 @@
-<section class='container-fuild col-8 col-sm-6 offset-sm-3 text-bg-purple p-3 rounded-3'>
+<section class='container-fuild col-8 col-sm-6 offset-sm-3 text-bg-light p-3 rounded-3'>
+  <%= render 'shared/errors', obj: @plan %>
   <%= form_with model: @plan do |f|  %>
     <div class="field">
       <%= f.label :plan_name, class: 'form-label' %>
@@ -25,7 +26,7 @@
       </div>
     </div>
     <div class='actions'>
-      <%= f.submit class: 'btn btn-light offset-sm-9 mt-3'  %>
+      <%= f.submit class: 'btn btn-purple offset-sm-9 mt-3'  %>
     </div>
   <% end %>
 </section>

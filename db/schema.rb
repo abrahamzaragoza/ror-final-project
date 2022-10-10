@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_03_232158) do
+ActiveRecord::Schema.define(version: 2022_10_09_215830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -63,6 +63,14 @@ ActiveRecord::Schema.define(version: 2022_10_03_232158) do
     t.index ["owner_id"], name: "index_boards_on_owner_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string "card_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "plan_name"
     t.integer "price_cents", default: 0, null: false
@@ -71,6 +79,8 @@ ActiveRecord::Schema.define(version: 2022_10_03_232158) do
     t.integer "plan_duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "stripe_product_id"
+    t.string "stripe_price_id"
   end
 
   create_table "task_histories", force: :cascade do |t|
@@ -114,6 +124,20 @@ ActiveRecord::Schema.define(version: 2022_10_03_232158) do
     t.index ["task_list_id"], name: "index_tasks_on_task_list_id"
   end
 
+  create_table "user_plans", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.uuid "plan_id", null: false
+    t.integer "status"
+    t.integer "current_period_end"
+    t.integer "current_period_start"
+    t.integer "start_date"
+    t.integer "trial_end"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plan_id"], name: "index_user_plans_on_plan_id"
+    t.index ["user_id"], name: "index_user_plans_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -137,20 +161,30 @@ ActiveRecord::Schema.define(version: 2022_10_03_232158) do
     t.string "authorization_tier", default: "user"
     t.string "first_name"
     t.string "last_name"
+    t.boolean "security_updates", default: true
+    t.bigint "manager_id"
+    t.string "stripe_id"
+    t.boolean "free_trial_expired", default: false
+    t.string "stripe_subscription_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
+    t.index ["manager_id"], name: "index_users_on_manager_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "boards", "users", column: "owner_id"
+  add_foreign_key "payments", "users"
   add_foreign_key "task_histories", "tasks"
   add_foreign_key "task_lists", "boards"
   add_foreign_key "task_users", "tasks"
   add_foreign_key "task_users", "users"
   add_foreign_key "tasks", "task_lists"
   add_foreign_key "tasks", "users", column: "author_id"
+  add_foreign_key "user_plans", "plans"
+  add_foreign_key "user_plans", "users"
+  add_foreign_key "users", "users", column: "manager_id"
 end

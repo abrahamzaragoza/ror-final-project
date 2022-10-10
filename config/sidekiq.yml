@@ -1,0 +1,6 @@
+:concurrency: 1
+:queues:
+  - default
+  - mailers
+  - team_task_default
+  - team_task_mailers

@@ -2,9 +2,12 @@
 
 class TaskListsController < ApplicationController
   before_action :set_task_list, only: %i[show edit update destroy]
-  before_action :set_board, only: [:new]
-
-  def show; end
+  before_action :set_board, only: %i[new create]
+  grant(
+    user: :all,
+    manager: :all,
+    admin: :all
+  )
 
   def new
     @task_list = TaskList.new
@@ -15,11 +18,10 @@ class TaskListsController < ApplicationController
   def create
     @task_list = TaskList.new(task_list_params)
     @task_list.board_id = params[:board_id]
-    if @task_list.save
+    if @board.able_to_create_list? && @task_list.save
       flash_and_redirect_to(:notice, 'List has been created successfully', boards_path)
     else
-      flash[:alert] = "There was an error creating your list."
-      render 'new'
+      flash_and_render(:alert, 'There was an error creating your list.', :new)
     end
   end
 

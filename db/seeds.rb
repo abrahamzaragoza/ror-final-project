@@ -32,7 +32,8 @@ manager.save!
       authorization_tier: 'user',
       email: Faker::Internet.email,
       password: 'password',
-      invited_by_id: manager.id
+      invited_by_id: manager.id,
+      manager_id: manager.id
     }
   )
   user.skip_confirmation!
@@ -79,80 +80,47 @@ Rails.logger.debug 'Plans have been created'
 
 boards = [
   {
-    title: 'Main Board',
+    title: Faker::Lorem.word,
     visibility: 'private'
   },
   {
-    title: 'Secondary Board',
+    title: Faker::Lorem.word,
     visibility: 'public'
   }
 ]
 
 task_lists = [
   {
-    name: 'Dev',
-    color: '#46dd4e',
+    name: Faker::Lorem.sentence(word_count: 3),
+    color: Faker::Color.hex_color,
     priority: 'low'
   },
   {
-    name: 'Prod',
-    color: '#be7eff',
+    name: Faker::Lorem.sentence(word_count: 3),
+    color: Faker::Color.hex_color,
     priority: 'critical'
   },
   {
-    name: 'Testing',
-    color: '#ff6f59',
+    name: Faker::Lorem.sentence(word_count: 3),
+    color: Faker::Color.hex_color,
     priority: 'important'
   }
 ]
 
-tasks = [
-  {
-    title: 'Prepare feature A',
-    started_at: Time.zone.now,
-    finished_at: Time.zone.now,
-    doing_time: 3,
-    justification: 'Some justification for this task',
-    details: '<p>Something nice</p>'
-  },
-  {
-    title: 'Fix feature B',
-    started_at: Time.zone.now,
-    finished_at: Time.zone.now,
-    doing_time: 4,
-    justification: 'Fixing this features requires a decent amount of time',
-    details: '<p>Something nice</p>'
-  },
-  {
-    title: 'Create feature C',
-    started_at: Time.zone.now,
-    finished_at: Time.zone.now,
-    doing_time: 2,
-    justification: 'This feature is simple to implement',
-    details: '<p>Something nice</p>'
-  },
-  {
-    title: 'Add new feature',
-    started_at: Time.zone.now,
-    finished_at: Time.zone.now,
-    doing_time: 5,
-    justification: 'Sample task justification',
-    details: '<p>Something nice</p>'
-  },
-  {
-    title: 'Update feature A',
-    started_at: Time.zone.now,
-    finished_at: Time.zone.now,
-    doing_time: 4,
-    justification: 'Adding new complex options to feature A',
-    details: '<p>Something nice</p>'
-  }
-]
+task = {
+  title: Faker::Lorem.sentence(word_count: 3),
+  started_at: Time.zone.now,
+  finished_at: Time.zone.now,
+  doing_time: Faker::Number.number(digits: 1),
+  justification: Faker::Lorem.sentence(word_count: 4),
+  details: "<p>#{Faker::Markdown.headers}</p>"
+}
 
 boards.each do |b|
   Board.create!(
     title: b[:title],
-    visibility: b[:visibility]
+    visibility: b[:visibility],
+    owner_id: manager.id
   )
 end
 
@@ -172,7 +140,7 @@ end
 Rails.logger.debug 'Task Lists have been created'
 
 TaskList.all.each do |tl|
-  tasks.each do |task|
+  6.times do
     Task.create!(
       title: task[:title],
       started_at: task[:started_at],
@@ -180,7 +148,8 @@ TaskList.all.each do |tl|
       doing_time: task[:doing_time],
       justification: task[:justification],
       details: task[:details],
-      task_list_id: tl.id
+      task_list_id: tl.id,
+      author_id: manager.id
     )
   end
 end

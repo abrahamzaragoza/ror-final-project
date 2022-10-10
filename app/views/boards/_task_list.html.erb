@@ -1,6 +1,6 @@
 <% list_presenter = TaskListPresenter.new(list) %>
-  <div class="col-md-3-custom h-100  bg-light rounded-3 mb-5 list-container">
-    <div class="relative border task-list-title">
+  <div class="col-md-3-custom h-100  bg-light rounded-3 mb-5 list-container task-list-container">
+    <div class="relative border bg-light task-list-title task-list-header">
       <div class="d-fex p-2 text-15r justify-content-between">
         <p class="col-md fs-4"><%= list.name %></p>
       </div>
@@ -13,9 +13,9 @@
     </div>
     <div>
       <% list.tasks.each do |task| %>
-      <div class="p-2 text-bg-light-blue bottom-border">
+      <div class="p-3 text-bg-light border rounded-3" id="task-container">
         <p class="m-0">
-          <%= link_to task.title, task_path(task), class: 'text-light' %>
+          <%= link_to task.title, task_path(task), style: 'font-weight: bold; text-decoration: none; color: #01115b;' %>
         </p>
         <div class="time-and-justification-container">
           <p class="text-7r m-0">Doing time: <%= task.doing_time %></p>
