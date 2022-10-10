@@ -61,5 +61,6 @@ class StripeService
 
   def cancel_subscription(user)
     Stripe::Subscription.delete(user.stripe_subscription_id)
+    user.update(stripe_subscription_id: nil)
   end
 end
