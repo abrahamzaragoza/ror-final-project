@@ -11,6 +11,7 @@ class BoardPresenter
     "This board has #{pluralize(@board.task_lists.all.count, 'list')}."
   end
 
+  # i have seen this code before.
   def visibility_badge_color
     {
       'public' => 'bg-success',

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Task < ApplicationRecord
+  # same for this model DSL methods
   validates :title, :doing_time, :justification, presence: true
   validates :doing_time, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TaskList < ApplicationRecord
+  # again, see rubucop styleguide for rails
   validates :name, presence: true, length: { minimum: 3, maximum: 50 }
   validates :color, presence: true, format: { with: /\A#[a-zA-Z0-9]*/, message: 'Only hexadecimal values allowed' },
                     length: { minimum: 4, maximum: 7 }
